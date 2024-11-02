@@ -3,7 +3,7 @@ function sendWhatsAppRequest() {
     var formData = new FormData(form);
 
     // Build WhatsApp message with form data
-    var message = "REQUEST%20AKUN%20ANDA%0A▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬%0ASERVER%20ID%20ATHA%0A";
+    var message = "REQUEST%20AKUN%20ANDA%0A▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬%0ASERVER%20ID%20NUSA%20STB%0A";
     var message1 = "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬%0A";
     formData.forEach(function(value, key) {
         message += key + "%3A%20" + value + "%0A";
