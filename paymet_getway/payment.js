@@ -9,9 +9,9 @@ let data = {
     currency: "IDR",
     usage_limit: 1,
     callback: {
-        success: "https://arisctunnel.xyz/riquest_sg_vvip",
-        failure: "https://arisctunnel.xyz/",
-        pending: "https://arisctunnel.xyz/"
+        success: "https://rajaserverpremium.my.id/riquest_sg_vvip",
+        failure: "https://rajaserverpremium.my.id/",
+        pending: "https://rajaserverpremium.my.id/"
     },
 };
 
