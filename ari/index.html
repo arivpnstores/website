@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create SSH Account</title>
+</head>
+<body>
+    <h2>Create SSH Account on VPS Tunneling</h2>
+    
+    <!-- Form input untuk username dan password -->
+    <form method="POST" action="login.php">
+        <label for="username">SSH Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">SSH Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="ip">Server IP:</label><br>
+        <input type="text" id="ip" name="ip" required><br><br>
+
+        <label for="expiry">Expiry (days):</label><br>
+        <input type="number" id="expiry" name="expiry" required value="30"><br><br>
+
+        <button type="submit">Create SSH Account</button>
+    </form>
+</body>
+</html>
