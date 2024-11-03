@@ -3,11 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
+    <title>Payment Class Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background: #e7e7e7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Konten HTML di sini -->
 
-    <script src="https://rajaserverpremium.my.id/paymet_getway/payment.js"></script>
+<h1>Payment Class Documentation</h1>
+<p>This document describes the <strong>Payment</strong> class used for processing payments.</p>
+
+<h2>Class: Payment</h2>
+<pre><code>class Payment {
+    constructor() {
+        this.key = 'b26de7e3ba84faa968463778d0469af2'
+        this.service = 11
+        this.valid_time = 1800
+        this.api = 'https://api.paydisini.co.id/v1/'
+        this.note = 'Powered By Zayden'
+    }
+    ...
+}</code></pre>
+
+<h3>Methods</h3>
+
+<h4>1. CretedCode()</h4>
+<p>Generates a unique transaction code.</p>
+<pre><code>async CretedCode() {
+    return 'ZYD' + crypto.randomBytes(12).toString('hex').toUpperCase()
+}</code></pre>
+
+<h4>2. CreatedPayment(amount)</h4>
+<p>Creates a new payment transaction.</p>
+<pre><code>async CreatedPayment(amount) {
+    return new Promise(async (resolve) => {
+        const code = await this.CretedCode()
+        const form = new URLSearchParams()
+        ...
+        resolve(result)
+    })
+}</code></pre>
+
+<h4>3. CheckStatus(code)</h4>
+<p>Checks the status of a payment transaction.</p>
+<pre><code>async CheckStatus(code) {
+    if (!code.startWith('ZYD')) return { error: 'Invalid Code' }
+    return new Promise(async (resolve) => {
+        const form = new URLSearchParams()
+        ...
+        resolve(result)
+    })
+}</code></pre>
+
+<h4>4. CancelPayment(code)</h4>
+<p>Cancel a payment transaction.</p>
+<pre><code>async CancelPayment(code) {
+    return new Promise(async (resolve) => {
+        const form = new URLSearchParams()
+        ...
+        resolve(result)
+    })
+}</code></pre>
+
+<h3>Usage Example</h3>
+<pre><code>const payment = new Payment();
+payment.CreatedPayment(100000).then(result => {
+    console.log(result);
+});</code></pre>
+
+<p>For more information, refer to the API documentation.</p>
+
 </body>
 </html>
