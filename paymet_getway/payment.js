@@ -1,55 +1,47 @@
-import axios from "axios";
-import { randomUUID } from 'crypto';
-
-let data = {
-    transaction_details: {
-        order_id: randomUUID(),
-        gross_amount: 10000
-    },
-    currency: "IDR",
-    usage_limit: 1,
-    callback: {
-        success: "https://rajaserverpremium.my.id/riquest_sg_vvip",
-        failure: "https://rajaserverpremium.my.id/",
-        pending: "https://rajaserverpremium.my.id/"
-    },
-};
-
-export const createPaymentLink = async (data) => {
+async function createPayment() {
+    const PAYDISINI_API_URL = 'https://api.paydisini.co.id/v1/';
+    
+    // Data yang akan dikirim ke API Paydini
+    const postData = {
+      key: '3bd750c6e13ed61e114433ab255c645b', // ganti dengan API key Anda
+      request: 'new',
+      unique_code: 'postman123unikcode',
+      service: '11',
+      amount: '1000',
+      note: 'Pembayaran',
+      valid_time: '1800', // waktu validasi dalam detik
+      type_fee: '1',
+      payment_guide: true, // Tampilkan panduan pembayaran
+      signature: '4141', // ganti dengan signature Anda
+      return_url: 'https://wa.me/6281327393959/' // URL kembali setelah pembayaran selesai
+    };
+    
     try {
-        const response = await axios.post("https://api.midtrans.com/v1/payment-links", data, {
-            headers: {
-                "accept": "application/json",
-                "content-type": "application/json",
-                "Authorization": "Basic TWlkLXNlcnZlci1mZExKb2U2NkFnNnNBbGJ3OTVhTU5iam46TWlkLWNsaWVudC1QSTUtcHRaVFJZdk94TWJF"
-            }
-        });
-        console.log(response.data);
-        return response.data;
-    } catch (e) {
-        console.error(e);
+      const response = await fetch(PAYDISINI_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postData)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        console.log('Payment created:', result);
+        
+        // Jika berhasil, Anda bisa redirect pengguna ke halaman pembayaran
+        if (result.payment_url) {
+          window.location.href = result.payment_url; // Redirect ke URL pembayaran
+        }
+      } else {
+        console.error('Failed to create payment:', result);
+      }
+    } catch (error) {
+      console.error('Error creating payment:', error);
     }
-}
-
-export const getPaymentStatus = async (id) => {
-    try {
-        const result = {};
-        const response = await axios.get("https://api.midtrans.com/v2/" + id + "/status", {
-            headers: {
-                "accept": "application/json",
-                "content-type": "application/json",
-                "Authorization": "Basic TWlkLXNlcnZlci1mZExKb2U2NkFnNnNBbGJ3OTVhTU5iam46TWlkLWNsaWVudC1QSTUtcHRaVFJZdk94TWJF"
-            }
-        });
-        result.status = response.data.status_code;
-        result.message = response.data.status_message;
-        result.date = response.data.transaction_time;
-        result.payment = response.data.payment_type;
-        result.order_id = response.data.order_id;
-        return result;
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-createPaymentLink(data);
+  }
+  
+  // Panggil fungsi untuk memulai pembayaran
+  createPayment();
+  
