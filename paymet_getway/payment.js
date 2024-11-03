@@ -8,11 +8,11 @@ async function createPayment() {
       unique_code: 'postman123unikcode',
       service: '11',
       amount: '1000',
-      note: 'Pembayaran',
+      note: 'Pembayaran pertama',
       valid_time: '1800', // waktu validasi dalam detik
       type_fee: '1',
       payment_guide: true, // Tampilkan panduan pembayaran
-      signature: '4141', // ganti dengan signature Anda
+      signature: 'ba8427311e3d002bfa52a48ad46c04d2', // ganti dengan signature Anda
       return_url: 'https://wa.me/6281327393959/' // URL kembali setelah pembayaran selesai
     };
     
