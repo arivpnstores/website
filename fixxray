@@ -43,5 +43,5 @@ done
 if [ $found -eq 0 ]; then
   echo "Tidak ada akun dengan nama yang sama (perbedaan kapitalisasi) ditemukan."
 fi
-
+echo "Hapus akun yang nama nya sama tersebut agar tidak eror"
 echo "Selesai."
