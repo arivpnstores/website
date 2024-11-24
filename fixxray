@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Menyaring dan mengolah output dari perintah yang Anda sebutkan untuk VMESS, VLESS, Trojan dan SS-R
+echo "Mendeteksi nama akun yang sama dengan perbedaan huruf kapital..."
+
+# Mengambil output dari perintah grep untuk VMESS, VLESS, Trojan dan SS-R
+accounts_vmess=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+accounts_vless=$(grep -E "^#& " "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+accounts_trojan=$(grep -E "^#! " "/etc/xray/config.json" | cut -d ' ' -f 2 | sort | uniq)
+accounts_ssr=$(grep -E "^#!# " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | column -t | sort | uniq)
+
+# Menggabungkan daftar akun VMESS, VLESS, Trojan dan SS-R
+all_accounts=$(echo -e "$accounts_vmess\n$accounts_vless\n$accounts_trojan\n$accounts_ssr")
+
+# Menyortir dan mengubah nama menjadi huruf kecil untuk membandingkan dengan kapitalisasi yang berbeda
+sorted_accounts=($(echo "$all_accounts" | tr '[:upper:]' '[:lower:]' | sort))
+
+# Mendeteksi nama yang sama dengan perbedaan kapitalisasi dan menampilkan sumbernya
+found=0
+for account in $(echo "$all_accounts" | tr '[:upper:]' '[:lower:]' | sort | uniq -d); do
+  # Menemukan akun yang sama
+  echo "Nama yang sama ditemukan (perbedaan kapitalisasi): $account"
+  
+  # Menampilkan sumber akun (VMESS, VLESS, Trojan, SS-R)
+  if echo "$accounts_vmess" | grep -iq "^$account$"; then
+    echo "Ditemukan di VMESS"
+  fi
+  if echo "$accounts_vless" | grep -iq "^$account$"; then
+    echo "Ditemukan di VLESS"
+  fi
+  if echo "$accounts_trojan" | grep -iq "^$account$"; then
+    echo "Ditemukan di TROJAN"
+  fi
+  if echo "$accounts_ssr" | grep -iq "^$account$"; then
+    echo "Ditemukan di SS-R"
+  fi
+  
+  # Tandai bahwa setidaknya ada akun yang ditemukan
+  found=1
+done
+
+# Jika tidak ada akun yang ditemukan, beri tahu pengguna
+if [ $found -eq 0 ]; then
+  echo "Tidak ada akun dengan nama yang sama (perbedaan kapitalisasi) ditemukan."
+fi
+echo "Hapus akun yang nama yang sama tersebut agar tidak eror"
+echo "Selesai."
