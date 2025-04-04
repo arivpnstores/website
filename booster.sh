@@ -14,9 +14,9 @@ echo "Cleaning Memory Cache..."
 sync; echo 3 > /proc/sys/vm/drop_caches
 
 # Optimasi CPU scheduler agar prioritas lebih stabil
-sysctl -w kernel.sched_latency_ns=10000000
-sysctl -w kernel.sched_min_granularity_ns=5000000
-sysctl -w kernel.sched_wakeup_granularity_ns=7500000
+sysctl -w kernel.sched_latency_ns=10000000 >/dev/null 2>&1 
+sysctl -w kernel.sched_min_granularity_ns=5000000 >/dev/null 2>&1
+sysctl -w kernel.sched_wakeup_granularity_ns=7500000 >/dev/null 2>&1
 
 # Mengaktifkan mode performa untuk CPU jika tersedia
 if command -v cpufreq-set >/dev/null 2>&1; then
