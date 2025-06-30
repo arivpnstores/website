@@ -37,28 +37,28 @@ function sendWhatsAppRequest() {
     // Buat pesan WhatsApp
     let message = "🔥 *REQUEST AKUN VPN SG VIP* 🔥\n\n";
     
-    message += "📋 *DETAIL REQUEST:*\n";
-    message += `⚙️ Mode Inject: ${modeInject.toUpperCase()}\n`;
-    message += `👤 Username: ${username}\n`;
-    message += `🔐 Password: ${password}\n`;
-    message += `📅 Expired: ${exp} hari\n\n`;
+    message += "*DETAIL REQUEST:*\n";
+    message += `Mode Inject: ${modeInject.toUpperCase()}\n`;
+    message += `Username: ${username}\n`;
+    message += `Password: ${password}\n`;
+    message += `Expired: ${exp} hari\n\n`;
     
     // Tentukan kuota yang dipilih
     let selectedKuota = kuota;
     if (kuota === 'LAINNYA' && kuotaLain) {
         selectedKuota = kuotaLain;
     }
-    message += `📊 Kuota: ${selectedKuota}\n\n`;
+    message += `Kuota: ${selectedKuota}\n\n`;
     
     // Tentukan aplikasi inject yang dipilih
     let selectedApp = aplikasiInject;
     if (aplikasiInject === 'LAINNYA' && injectLain) {
         selectedApp = injectLain;
     }
-    message += `📱 Aplikasi Inject: ${selectedApp}\n\n`;
+    message += `Aplikasi Inject: ${selectedApp}\n\n`;
     
-    message += "✅ *Mohon diproses segera*\n";
-    message += "🙏 Terima kasih!";
+    message += "*Mohon diproses segera*\n";
+    message += "Terima kasih!";
     
     // Encode pesan untuk URL
     const encodedMessage = encodeURIComponent(message);
