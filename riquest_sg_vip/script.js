@@ -35,7 +35,7 @@ function sendWhatsAppRequest() {
     }
     
     // Buat pesan WhatsApp
-    let message = "🔥 *REQUEST AKUN VPN SG VIP* 🔥\n\n";
+    let message = "*REQUEST AKUN VPN SG VIP* \n\n";
     
     message += "*DETAIL REQUEST:*\n";
     message += `Mode Inject: ${modeInject.toUpperCase()}\n`;
