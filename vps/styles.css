@@ -40,12 +40,16 @@ body {
 .logo-section h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
-    animation: fadeInUp 0.6s ease-out;
 }
 
 .tagline {
     font-size: 1.2rem;
     opacity: 0.9;
+}
+
+.hero-section h2 {
+    font-size: 2rem;
+    margin-top: 20px;
 }
 
 /* Pricing Section */
@@ -329,17 +333,6 @@ body {
 .contact-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* Responsive Design */
