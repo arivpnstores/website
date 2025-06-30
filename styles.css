@@ -648,6 +648,84 @@ html {
     color: #a0aec0;
 }
 
+/* WhatsApp Integration Styles */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    animation: pulse 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    animation: none;
+}
+
+.floating-whatsapp i {
+    font-size: 2rem;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.service-whatsapp {
+    margin-top: 15px;
+    background: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.service-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* Enhanced WhatsApp Button */
+.btn-whatsapp {
+    background: linear-gradient(45deg, #25D366, #128C7E) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.btn-whatsapp:hover {
+    background: linear-gradient(45deg, #128C7E, #075E54) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4) !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
@@ -694,6 +772,17 @@ html {
         width: 100%;
         max-width: 300px;
         justify-content: center;
+    }
+
+    .floating-whatsapp {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .floating-whatsapp i {
+        font-size: 1.5rem;
     }
 }
 
