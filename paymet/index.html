@@ -1,128 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ARI VPN STORE</title>
-        <link rel="stylesheet" href="styles.css">
+    <title>API Pembayaran - ARI VPN STORE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <img src="https://rajaserverpremium.my.id/pp.jpg" alt="Logo">
-        <p>ARI VPN STORE</p>
-        <h2>ALL PAYMET</h2>
-    </div>
-    <div class="qr-code">
-        <img src="https://rajaserverpremium.my.id/qr.jpg" alt="qr">
-    </div>
-    <div class="list-price">
-        <div class="price-table">
-            <ul class="price-list">
-                <li class="price-item">
-                    <span class="item-name">BI-FAST</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">NEOBANK BANK</span>
-                    <span class="item-price">5859459286061352</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">SEABANK</span>
-                    <span class="item-price">901350808746</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">BANK JAGO</span>
-                    <span class="item-price">104467890007</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">DANA</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">LINK AJA</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">OVO</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">GOPAY</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">SHOPEEPAY</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">FLIP</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">BNI MOBILE VA</span>
-                    <span class="item-price">8810085647299390</span>
-                </li>
-                <hr />      <li class="price-item">
-                    <span class="item-name">BCA MOBILE VA</span>
-                    <span class="item-price">3901085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">BRI MOBILE</span>
-                    <span class="item-price">818001011705532</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">LIVIN MANDIRI VA</span>
-                    <span class="item-price">89508085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">CIMB NIAGA VA</span>
-                    <span class="item-price">8059085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">PERMATABANK (ALL BANK)</span>
-                    <span class="item-price">8528085647299390</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">WEBMONEY</span>
-                    <span class="item-price">Z834645352058</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">PULSA TSEL (+5K)</span>
-                    <span class="item-price">081327393959</span>
-                </li>
-                <hr />
-                <li class="price-item">
-                    <span class="item-name">PULSA ISAT (+5K)</span>
-                    <span class="item-price">085647299390</span>
-                </li>
-                <hr />
-
-            </ul>
-            <button>
-                <a href="https://wa.me/6281327393959?text=SUDAH%20MEMBAYAR%0A">SUDAH MEMBAYAR</a>
-            </button>
+    <div class="hero-section">
+        <div class="container">
+            <div class="logo-section">
+                <img src="https://raw.githubusercontent.com/arivpnstores/website/main/pp.jpg" alt="Logo">
+                <h1><i class="fas fa-code"></i> ARI VPN STORE</h1>
+                <p class="tagline">Dokumentasi API Pembayaran QRIS</p>
+            </div>
         </div>
     </div>
-   
-    <div class="warning">
-        <p>Hubungi kami :</p>
-        <p><a href="https://wa.me/6281327393959">WhatsApp</a> | <a href="https://t.me/ARI_VPN_STORE">Telegram</a></p>
+
+    <div class="api-section">
+        <div class="api-container">
+            <div class="api-header">
+                <i class="fas fa-exchange-alt"></i>
+                <h2>API ENDPOINTS PEMBAYARAN</h2>
+                <p>Dokumentasi endpoint untuk integrasi pembayaran QRIS</p>
+            </div>
+
+            <!-- Create QRIS Payment Endpoint -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-url">/orderkuota/createpayment</span>
+                </div>
+                <div class="endpoint-content">
+                    <h3>Buat Pembayaran QRIS</h3>
+                    <div class="endpoint-details">
+                        <div class="request-section">
+                            <h4>Parameter Query:</h4>
+<pre><code>apikey: [YOUR_API_KEY]
+amount: [jumlah pembayaran]
+codeqr: [kode QR unik]</code></pre>
+                        </div>
+                        <div class="response-section">
+                            <h4>Contoh Request:</h4>
+<pre id="createPaymentCode"><code>axios.get(`https://api.serverpremium.web.id/orderkuota/createpayment?apikey=[YOUR_API_KEY]&amount=${amount}&codeqr=${UrlQr}`);</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard('createPaymentCode')">
+                                <i class="fas fa-copy"></i> Salin Kode
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Check Payment Status Endpoint -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-url">/orderkuota/cekstatus</span>
+                </div>
+                <div class="endpoint-content">
+                    <h3>Cek Status Pembayaran</h3>
+                    <div class="endpoint-details">
+                        <div class="request-section">
+                            <h4>Parameter Query:</h4>
+<pre><code>apikey: [YOUR_API_KEY]
+merchant: [merchant ID]
+keyorkut: [API key order kuota]</code></pre>
+                        </div>
+                        <div class="response-section">
+                            <h4>Contoh Request:</h4>
+<pre id="checkStatusCode"><code>axios.get(`https://api.serverpremium.web.id/orderkuota/cekstatus?apikey=[YOUR_API_KEY]&merchant=${global.merchantIdOrderKuota}&keyorkut=${global.apiOrderKuota}`);</code></pre>
+                            <button class="copy-btn" onclick="copyToClipboard('checkStatusCode')">
+                                <i class="fas fa-copy"></i> Salin Kode
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API Configuration -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method info">INFO</span>
+                    <span class="endpoint-url">Konfigurasi API</span>
+                </div>
+                <div class="endpoint-content">
+                    <h3>Konfigurasi dan Autentikasi</h3>
+                    <div class="endpoint-details">
+                        <div class="request-section">
+                            <h4>Base URL:</h4>
+<pre><code>https://api.serverpremium.web.id</code></pre>
+                        </div>
+                        <div class="response-section">
+                            <h4>API Key:</h4>
+<pre><code>Hubungi admin untuk mendapatkan API Key</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="features-section">
+        <div class="features-container">
+            <h2><i class="fas fa-star"></i> FITUR API PEMBAYARAN</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-qrcode"></i>
+                    <h3>QRIS Payment</h3>
+                    <p>Pembayaran menggunakan QRIS standar Indonesia</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Real-time Processing</h3>
+                    <p>Proses pembayaran secara real-time</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Keamanan Tinggi</h3>
+                    <p>API key dan enkripsi untuk keamanan</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Tersedia 24/7</h3>
+                    <p>API tersedia 24 jam setiap hari</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <div class="contact-container">
+            <h2><i class="fas fa-headset"></i> Bantuan Integrasi</h2>
+            <p>Butuh bantuan untuk integrasi API? Hubungi tim support kami</p>
+            <div class="contact-buttons">
+                <a href="https://wa.me/6281327393959" class="contact-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp Support
+                </a>
+                <a href="https://t.me/ARI_VPN_STORE" class="contact-btn telegram">
+                    <i class="fab fa-telegram"></i>
+                    Telegram Support
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                // Tampilkan notifikasi berhasil
+                const button = element.nextElementSibling;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+                button.style.backgroundColor = '#10b981';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.backgroundColor = '';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Gagal menyalin: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
