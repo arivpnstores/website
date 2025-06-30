@@ -292,6 +292,8 @@ body::before {
     padding: 15px 0;
     border-bottom: 1px solid rgba(0,0,0,0.05);
     transition: var(--transition);
+    pointer-events: none;
+    cursor: default;
 }
 
 .price-item:hover {
