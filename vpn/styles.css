@@ -54,10 +54,12 @@ body::before {
 
 /* Hero Section */
 .hero-section {
-    background: var(--gradient-primary);
+    background: rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
     padding: 60px 0;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .hero-section::before {
@@ -162,14 +164,15 @@ body::before {
 
 /* Price Table Cards */
 .price-table {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-light);
     padding: 40px 30px;
     position: relative;
     transition: var(--transition);
     overflow: hidden;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .price-table::before {
@@ -179,14 +182,14 @@ body::before {
     left: 0;
     right: 0;
     height: 5px;
-    background: var(--gradient-primary);
+    background: rgba(102, 126, 234, 0.5);
     transition: var(--transition);
 }
 
 .price-table:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-heavy);
-    border-color: var(--primary-color);
+    border-color: rgba(102, 126, 234, 0.5);
 }
 
 .price-table:hover::before {
@@ -196,32 +199,34 @@ body::before {
 
 /* Featured Plan */
 .price-table.featured {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-    border: 2px solid var(--primary-color);
-    transform: scale(1.05);
+    background: rgba(102, 126, 234, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(102, 126, 234, 0.3);
 }
 
 .price-table.featured::before {
-    background: var(--gradient-accent);
+    background: rgba(240, 147, 251, 0.5);
     height: 5px;
 }
 
 /* Premium Plan */
 .price-table.premium {
-    background: linear-gradient(135deg, rgba(240, 147, 251, 0.05) 0%, rgba(79, 172, 254, 0.05) 100%);
-    border: 2px solid var(--accent-color);
+    background: rgba(240, 147, 251, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(240, 147, 251, 0.3);
 }
 
 .price-table.premium::before {
-    background: var(--gradient-success);
+    background: rgba(67, 233, 123, 0.5);
 }
 
-/* Plan Badges */
+/* Plan Badges - Near Logo Position */
 .plan-badge {
     position: absolute;
-    top: -15px;
+    top: 40px;
     right: 30px;
-    background: var(--gradient-primary);
+    background: rgba(102, 126, 234, 0.8);
+    backdrop-filter: blur(10px);
     color: var(--white);
     padding: 8px 20px;
     border-radius: 20px;
@@ -231,6 +236,8 @@ body::before {
     display: flex;
     align-items: center;
     gap: 5px;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .plan-badge i {
@@ -238,7 +245,8 @@ body::before {
 }
 
 .premium-badge {
-    background: var(--gradient-accent);
+    background: rgba(240, 147, 251, 0.8);
+    backdrop-filter: blur(10px);
 }
 
 /* Plan Header */
@@ -251,7 +259,7 @@ body::before {
 
 .plan-header i {
     font-size: 3rem;
-    color: var(--primary-color);
+    color: rgba(102, 126, 234, 0.8);
     margin-bottom: 15px;
     display: block;
     transition: var(--transition);
@@ -259,18 +267,19 @@ body::before {
 
 .price-table:hover .plan-header i {
     transform: scale(1.2) rotate(10deg);
-    color: var(--accent-color);
+    color: rgba(240, 147, 251, 0.8);
 }
 
 .plan-header h2 {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--dark-color);
+    color: var(--white);
     margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 .plan-description {
-    color: #666;
+    color: rgba(255,255,255,0.8);
     font-size: 0.95rem;
     font-weight: 400;
 }
@@ -286,31 +295,34 @@ body::before {
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     transition: var(--transition);
+    pointer-events: none;
+    cursor: default;
 }
 
 .price-item:hover {
-    background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+    background: rgba(102, 126, 234, 0.1);
     padding-left: 10px;
     border-radius: 10px;
 }
 
 .item-name {
     font-weight: 500;
-    color: var(--dark-color);
+    color: var(--white);
     font-size: 0.95rem;
 }
 
 .item-price {
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--white);
     font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 .price-item:hover .item-name,
 .price-item:hover .item-price {
-    color: var(--accent-color);
+    color: rgba(240, 147, 251, 0.9);
 }
 
 hr {
@@ -326,7 +338,8 @@ hr {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: var(--gradient-primary);
+    background: rgba(102, 126, 234, 0.8);
+    backdrop-filter: blur(10px);
     color: var(--white);
     text-decoration: none;
     padding: 15px 30px;
@@ -337,6 +350,7 @@ hr {
     box-shadow: var(--shadow-medium);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .buy-btn::before {
@@ -357,7 +371,7 @@ hr {
 .buy-btn:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-heavy);
-    background: var(--gradient-accent);
+    background: rgba(240, 147, 251, 0.8);
 }
 
 .buy-btn i {
@@ -366,9 +380,11 @@ hr {
 
 /* Features Section */
 .features-section {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     padding: 80px 20px;
     margin: 60px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .features-container {
@@ -380,9 +396,10 @@ hr {
 .features-container h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--dark-color);
+    color: var(--white);
     margin-bottom: 50px;
     position: relative;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .features-container h2::after {
@@ -393,12 +410,12 @@ hr {
     transform: translateX(-50%);
     width: 100px;
     height: 4px;
-    background: var(--gradient-primary);
+    background: rgba(102, 126, 234, 0.8);
     border-radius: 2px;
 }
 
 .features-container h2 i {
-    color: var(--warning-color);
+    color: rgba(67, 233, 123, 0.8);
     margin-right: 15px;
 }
 
@@ -410,23 +427,24 @@ hr {
 }
 
 .feature-item {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(240, 147, 251, 0.05) 100%);
+    background: rgba(102, 126, 234, 0.1);
+    backdrop-filter: blur(10px);
     padding: 30px 20px;
     border-radius: var(--border-radius);
     transition: var(--transition);
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .feature-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-medium);
-    border-color: var(--primary-color);
-    background: var(--white);
+    border-color: rgba(102, 126, 234, 0.5);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .feature-item i {
     font-size: 2.5rem;
-    color: var(--success-color);
+    color: rgba(79, 172, 254, 0.8);
     margin-bottom: 15px;
     display: block;
     transition: var(--transition);
@@ -434,20 +452,22 @@ hr {
 
 .feature-item:hover i {
     transform: scale(1.2);
-    color: var(--primary-color);
+    color: rgba(102, 126, 234, 0.9);
 }
 
 .feature-item p {
     font-weight: 500;
-    color: var(--dark-color);
+    color: var(--white);
     font-size: 1rem;
 }
 
 /* Rules Section */
 .rules-section {
-    background: linear-gradient(135deg, rgba(250, 112, 154, 0.1) 0%, rgba(254, 118, 117, 0.1) 100%);
+    background: rgba(250, 112, 154, 0.1);
+    backdrop-filter: blur(10px);
     padding: 80px 20px;
     margin: 60px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .rules-container {
@@ -459,9 +479,10 @@ hr {
 .rules-container h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--danger-color);
+    color: var(--white);
     margin-bottom: 50px;
     position: relative;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .rules-container h2::after {
@@ -472,12 +493,12 @@ hr {
     transform: translateX(-50%);
     width: 100px;
     height: 4px;
-    background: linear-gradient(135deg, var(--danger-color) 0%, #fe7675 100%);
+    background: rgba(250, 112, 154, 0.8);
     border-radius: 2px;
 }
 
 .rules-container h2 i {
-    color: #fe7675;
+    color: rgba(254, 118, 117, 0.8);
     margin-right: 15px;
     animation: warning 2s ease-in-out infinite;
 }
@@ -495,23 +516,24 @@ hr {
 }
 
 .rule-item {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     padding: 25px 20px;
     border-radius: var(--border-radius);
     transition: var(--transition);
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow: var(--shadow-light);
 }
 
 .rule-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-medium);
-    border-color: var(--danger-color);
+    border-color: rgba(250, 112, 154, 0.5);
 }
 
 .rule-item i {
     font-size: 2rem;
-    color: var(--danger-color);
+    color: rgba(250, 112, 154, 0.8);
     margin-bottom: 15px;
     display: block;
     transition: var(--transition);
@@ -523,15 +545,17 @@ hr {
 
 .rule-item p {
     font-weight: 600;
-    color: var(--dark-color);
+    color: var(--white);
     font-size: 0.95rem;
 }
 
 /* Contact Section */
 .contact-section {
-    background: var(--gradient-primary);
+    background: rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
     padding: 80px 20px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .contact-container {
@@ -548,7 +572,7 @@ hr {
 }
 
 .contact-container h2 i {
-    color: var(--accent-color);
+    color: rgba(240, 147, 251, 0.8);
     margin-right: 15px;
 }
 
@@ -572,6 +596,8 @@ hr {
     box-shadow: var(--shadow-medium);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .contact-btn::before {
@@ -590,7 +616,7 @@ hr {
 }
 
 .whatsapp {
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    background: rgba(37, 211, 102, 0.8);
     color: var(--white);
 }
 
@@ -600,7 +626,7 @@ hr {
 }
 
 .telegram {
-    background: linear-gradient(135deg, #0088cc 0%, #005580 100%);
+    background: rgba(0, 136, 204, 0.8);
     color: var(--white);
 }
 
@@ -629,8 +655,11 @@ hr {
         gap: 20px;
     }
     
-    .price-table.featured {
-        transform: none;
+    .plan-badge {
+        top: 100px;
+        right: 20px;
+        font-size: 0.7rem;
+        padding: 6px 15px;
     }
     
     .features-grid,
@@ -686,6 +715,13 @@ hr {
     .plan-header h2 {
         font-size: 1.5rem;
     }
+    
+    .plan-badge {
+        top: 80px;
+        right: 15px;
+        font-size: 0.6rem;
+        padding: 5px 12px;
+    }
 }
 
 /* Smooth scrolling */
@@ -727,10 +763,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--gradient-primary);
+    background: rgba(102, 126, 234, 0.8);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--gradient-accent);
+    background: rgba(240, 147, 251, 0.8);
 }
