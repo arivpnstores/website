@@ -1,53 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ARI VPN STORE</title>
-        <link rel="stylesheet" href="styles.css">
-
+    <title>Request VPS Digital Ocean 1 - ARI VPN STORE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="list-price">
-        <div class="price-table">
-                    <form id="requestForm">
-                        <h2>REQUEST VPS ANDA</h2>
-                        <hr />
-                        <p>OS : (ceklis salah satu)</p>
-                        <ul>
-                            <li><input type="checkbox" name="OS" value="Ubuntu 20.04 LTS"> Ubuntu 20.04 LTS</li>
-                            <li><input type="checkbox" name="OS" value="Debian 10"> Debian 10</li>
-                        </ul>
-                        <hr />
-                        <p>REQUEST VPS ANDA (isi sesuai keingginan anda)</p>
-                        <ul>
-                            <li>NAMA VPS: <input type="NAMA VPS" name="NAMA VPS"></li>
-                            <li>USERNAME: <input type="checkbox" name="username" value="root">root </li>
-                       <li>PASSWORD: <input type="checkbox" name="password"value="ACAK">ACAK </li> 
-                                <li>EXP     : <input type="checkbox" name="EXP" value="1 BULAN"> 1 BULAN </li>
-                        </ul>
-                        <hr />
-                        <p>Choose Region : </p>
-                        <ul>
-                            <li><input type="checkbox" name="ISP" value="Singapore"> Singapore</li>
-                            <li>LAIN NYA: <input type="ISP LAIN" name="costum region"></li>
-                            <!-- Tambahkan pilihan kuota dan kuota lainnya sesuai kebutuhan -->
-                        </ul>
-                        <hr />
-                        <p>SECRIPT : </p>
-                        <ul>
-                            <li><input type="checkbox" name="SC" value="ARISCTUNNEL V4"> ARISCTUNNEL V4</li>
-                        </ul>
-                        <hr />
-                        <!-- Change button type to button -->
-                        <button type="button" onclick="sendWhatsAppRequest()">Kirim Request</button> <ul> </ul>
-                         <a href="https://rajaserverpremium.my.id/vps/">Kembali ke List</a>
-                    </form>
-                </div>
-            
-                <!-- JavaScript to handle form submission -->
-                <script src="https://rajaserverpremium.my.id/riquest_vps_do/script.js"></script>
-               </div>
+    <div class="hero-section">
+        <div class="container">
+            <div class="logo-section">
+                <img src="https://raw.githubusercontent.com/arivpnstores/website/main/pp.jpg" alt="Logo">
+                <h1><i class="fas fa-server"></i> ARI VPN STORE</h1>
+                <p class="tagline">Request VPS Digital Ocean - ARISCTUNNEL V4</p>
             </div>
-        </body>
-        </html>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h2>REQUEST VPS DIGITAL OCEAN - ARISCTUNNEL V4</h2>
+                <p>Isi form di bawah ini untuk request VPS dengan ARISCTUNNEL V4 sesuai kebutuhan Anda</p>
+            </div>
+
+            <form id="requestForm">
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fab fa-ubuntu"></i>
+                        <h3>Pilih Operating System</h3>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="radio" name="OS" value="Ubuntu 20.04 LTS">
+                            <span class="checkmark"></span>
+                            <div class="option-content">
+                                <i class="fab fa-ubuntu"></i>
+                                <span>Ubuntu 20.04 LTS</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-cog"></i>
+                        <h3>Konfigurasi VPS</h3>
+                    </div>
+                    <div class="input-group">
+                        <label for="vpsName">
+                            <i class="fas fa-tag"></i>
+                            Nama VPS
+                        </label>
+                        <input type="text" id="vpsName" name="vpsName" placeholder="Masukkan nama VPS Anda" required>
+                    </div>
+                    
+                    <div class="config-options">
+                        <div class="config-item">
+                            <label class="config-label">
+                                <i class="fas fa-user"></i>
+                                Username
+                            </label>
+                            <div class="config-value">root</div>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">
+                                <i class="fas fa-key"></i>
+                                Password
+                            </label>
+                            <div class="config-value">Random Generated</div>
+                        </div>
+                        <div class="config-item">
+                            <label class="config-label">
+                                <i class="fas fa-calendar"></i>
+                                Durasi
+                            </label>
+                            <div class="config-value">1 Bulan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-globe"></i>
+                        <h3>Pilih Region</h3>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="radio" name="region" value="Singapore">
+                            <span class="checkmark"></span>
+                            <div class="option-content">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Singapore</span>
+                            </div>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="radio" name="region" value="custom">
+                            <span class="checkmark"></span>
+                            <div class="option-content">
+                                <i class="fas fa-edit"></i>
+                                <span>Region Lainnya</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input-group custom-region" style="display: none;">
+                        <label for="customRegion">
+                            <i class="fas fa-map"></i>
+                            Sebutkan Region
+                        </label>
+                        <input type="text" id="customRegion" name="customRegion" placeholder="Masukkan region yang diinginkan">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Script Installation</h3>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="radio" name="script" value="ARISCTUNNEL V4" checked>
+                            <span class="checkmark"></span>
+                            <div class="option-content">
+                                <i class="fas fa-code"></i>
+                                <span>ARISCTUNNEL V4</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-submit" onclick="sendWhatsAppRequest()">
+                        <i class="fab fa-whatsapp"></i>
+                        Kirim Request via WhatsApp
+                    </button>
+                    <a href="https://rajaserverpremium.my.id/vps/" class="btn-back">
+                        <i class="fas fa-arrow-left"></i>
+                        Kembali ke List VPS
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>Proses Cepat</h4>
+                    <p>VPS akan disetup dalam 1-24 jam setelah pembayaran</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Keamanan Terjamin</h4>
+                    <p>Server dengan keamanan tingkat enterprise</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-headset"></i>
+                    <h4>Support 24/7</h4>
+                    <p>Tim support siap membantu kapan saja</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Show/hide custom region input
+        document.querySelectorAll('input[name="region"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const customRegionDiv = document.querySelector('.custom-region');
+                if (this.value === 'custom') {
+                    customRegionDiv.style.display = 'block';
+                } else {
+                    customRegionDiv.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

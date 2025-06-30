@@ -594,6 +594,53 @@ html {
     width: 20px;
 }
 
+.admin-chat-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    justify-content: center;
+}
+
+.chat-btn.whatsapp {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: white;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.chat-btn.whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.chat-btn.telegram {
+    background: linear-gradient(45deg, #0088cc, #005580);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+}
+
+.chat-btn.telegram:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4);
+}
+
+.chat-btn i {
+    font-size: 1.1rem;
+}
+
 .footer-bottom {
     border-top: 1px solid #2d3748;
     padding-top: 20px;
