@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - Server Premium</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-credit-card"></i> Pembayaran Server Premium</h1>
+            <p>Silakan pilih metode pembayaran yang tersedia</p>
+        </header>
+
+        <div class="payment-section">
+            <div class="qris-section">
+                <h2><i class="fas fa-qrcode"></i> QRIS - Scan untuk Pembayaran</h2>
+                <div class="qris-container">
+                    <img src="https://serverpremium.web.id/qris.jpg" alt="QRIS Payment" class="qris-image">
+                    <p class="qris-note">Scan QRIS di atas untuk pembayaran instan</p>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <h2><i class="fas fa-money-bill-wave"></i> Metode Pembayaran</h2>
+                
+                <div class="payment-category">
+                    <h3><i class="fas fa-university"></i> Bank</h3>
+                    <div class="payment-grid">
+                        <div class="payment-item">
+                            <i class="fas fa-university"></i>
+                            <strong>BI-FAST</strong>
+                            <span>085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-university"></i>
+                            <strong>NeoBank</strong>
+                            <span>5859459286061352</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-university"></i>
+                            <strong>SeaBank</strong>
+                            <span>901350808746</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-university"></i>
+                            <strong>Bank Jago</strong>
+                            <span>104467890007</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-building"></i>
+                            <strong>BRI Mobile</strong>
+                            <span>818001011705532</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-building"></i>
+                            <strong>BNI Mobile VA</strong>
+                            <span>8810085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-building"></i>
+                            <strong>BCA Mobile VA</strong>
+                            <span>3901085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-building"></i>
+                            <strong>Livin Mandiri VA</strong>
+                            <span>89508085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-building"></i>
+                            <strong>CIMB Niaga VA</strong>
+                            <span>8059085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-building"></i>
+                            <strong>PermataBank (All Bank)</strong>
+                            <span>8528085647299390</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-category">
+                    <h3><i class="fas fa-mobile-alt"></i> E-Wallet</h3>
+                    <div class="payment-grid">
+                        <div class="payment-item">
+                            <i class="fas fa-wallet"></i>
+                            <strong>DANA</strong>
+                            <span>085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-wallet"></i>
+                            <strong>LinkAja</strong>
+                            <span>085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-wallet"></i>
+                            <strong>OVO</strong>
+                            <span>085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-wallet"></i>
+                            <strong>GoPay</strong>
+                            <span>085647299390</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-wallet"></i>
+                            <strong>ShopeePay</strong>
+                            <span>085647299390</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-category">
+                    <h3><i class="fas fa-sim-card"></i> Pulsa</h3>
+                    <div class="payment-grid">
+                        <div class="payment-item">
+                            <i class="fas fa-signal"></i>
+                            <strong>Telkomsel</strong>
+                            <span>081327393959 (+5K)</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-signal"></i>
+                            <strong>Indosat</strong>
+                            <span>085647299390 (+5K)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h2><i class="fas fa-info-circle"></i> Cara Pembayaran</h2>
+                <ol>
+                    <li>Pilih metode pembayaran yang tersedia di atas</li>
+                    <li>Transfer sesuai nominal yang ditentukan</li>
+                    <li>Screenshot bukti pembayaran</li>
+                    <li>Kirim bukti pembayaran untuk diproses</li>
+                </ol>
+            </div>
+
+            <div class="contact">
+                <h2><i class="fas fa-phone"></i> Hubungi Kami</h2>
+                <p>Jika sudah ditransfer, screenshot bukti pembayaran dan segera kami proses.</p>
+                <div class="contact-info">
+                    <i class="fas fa-whatsapp"></i>
+                    <span>WhatsApp: 085647299390</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Server Premium. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Copy to clipboard functionality
+        document.querySelectorAll('.payment-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.querySelector('span').textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show notification
+                    const notification = document.createElement('div');
+                    notification.className = 'notification';
+                    notification.textContent = 'Nomor rekening disalin!';
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
