@@ -395,7 +395,7 @@ function iinfo() {
 <code>EXP SCRIPT : </code><code>$EXP Hari</code>
 <code>━━━━━━━━━━━━━━━━━━━━</code>
 <i> Notifikasi Installer Script...</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"🔥ᴏʀᴅᴇʀ","url":"https://t.me/kytxz"},{"text":"🔥GRUP","url":"https://t.me/kytxz"}]]}'
+"'&reply_markup={"inline_keyboard":[[{"text":"🔥ᴏʀᴅᴇʀ","url":"https://t.me/ARI_VPN_STORE"},{"text":"🔥GRUP","url":"https://t.me/ARI_VPN_STORE"}]]}'
     
     curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
     clear
@@ -433,7 +433,7 @@ echo -e "${blue} │                   ${bold_white}ANSENDAN${neutral}          
 echo -e "${blue} │         ${green}┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐          ${blue}│${neutral}"
 echo -e "${blue} │         ${green}├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │           ${blue}│${neutral}"
 echo -e "${blue} │         ${green}┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴           ${neutral}${blue}│${neutral}"
-echo -e "${blue} │         ${yellow}Copyright${reset} (C)${gray} https://t.me/Kytxz      ${blue}│${neutral}"
+echo -e "${blue} │         ${yellow}Copyright${reset} (C)${gray} https://t.me/ARI_VPN_STORE      ${blue}│${neutral}"
 echo -e "${blue} └───────────────────────────────────────────────┘${neutral}"
 echo -e "${blue} ────────────────────────────────────────────────${neutral}"
 echo -e "${yellow}     Masukkan Nama Anda untuk memulai instalasi:${neutral}"

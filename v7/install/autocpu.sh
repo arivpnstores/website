@@ -99,7 +99,7 @@ checking_sc() {
         echo -e "  \033[0;33m💡 Beli izin resmi hanya dari Admin!\033[0m"
         echo ""
         echo -e "  \033[92;1m📞 Contact Admin:\033[0m"
-        echo -e "  \033[96m🌍 Telegram: https://kytxz\033[0m"
+        echo -e "  \033[96m🌍 Telegram: https://ARI_VPN_STORE\033[0m"
         echo -e "  \033[96m📱 WhatsApp: https://wa.me/6281774970898\033[0m"
         echo ""
         echo -e "\033[1;93m────────────────────────────────────────────\033[0m"

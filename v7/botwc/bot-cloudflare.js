@@ -198,7 +198,7 @@ ${mainDivider()}
 ${mainDivider()}
 
 💬 *Untuk sewa bot premium:*
-Hubungi admin ganteng 👉 @kytxz`;
+Hubungi admin ganteng 👉 @ARI_VPN_STORE`;
 }
 
 function domainPanel(zoneName) {

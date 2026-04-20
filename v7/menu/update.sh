@@ -177,7 +177,7 @@ TEXT="◇━━━━━━━━━━━━━━◇
 <b>USER    :</b> ${username}
 <b>MASA    :</b> $certifacate DAY
 ◇━━━━━━━━━━━━━━◇
-BY BOT : @kytxz
+BY BOT : @ARI_VPN_STORE
 "
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
