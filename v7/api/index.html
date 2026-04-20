@@ -3,95 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Access Terminal</title>
+  <title>404 Not Found</title>
   <style>
     :root {
-      --bg: #05070d;
-      --panel: #0b1020;
-      --line: #1f2a44;
-      --text: #9cffb3;
-      --dim: #6bff95;
-      --warn: #ff5f5f;
+      --bg: #ffffff;
+      --text: #222222;
+      --muted: #666666;
+      --border: #dddddd;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Consolas, "Courier New", monospace;
-    }
+    * { box-sizing: border-box; }
     body {
-      background: radial-gradient(circle at top, #0f162b 0%, var(--bg) 55%);
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: 20px;
+      padding: 24px;
     }
-    .terminal {
-      width: min(840px, 100%);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #0e1426 0%, var(--panel) 100%);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      overflow: hidden;
+    .card {
+      width: min(720px, 100%);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      background: #fff;
     }
-    .bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #11182d;
-      border-bottom: 1px solid var(--line);
-      padding: 10px 14px;
-    }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .red { background: #ff5f56; }
-    .yellow { background: #ffbd2f; }
-    .green { background: #27c93f; }
-    .title {
-      margin-left: 8px;
-      color: #8ca0d6;
-      font-size: 0.82rem;
-      letter-spacing: 0.4px;
-    }
-    .screen {
-      padding: 22px;
-      line-height: 1.75;
-      font-size: 0.95rem;
-      white-space: pre-wrap;
-    }
-    .dim { color: var(--dim); opacity: 0.72; }
-    .warn {
-      color: var(--warn);
-      text-transform: uppercase;
-      letter-spacing: 0.7px;
+    h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
       font-weight: 700;
     }
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      animation: blink 0.9s steps(2, start) infinite;
+    p {
+      margin: 6px 0;
+      color: var(--muted);
+      line-height: 1.6;
     }
-    @keyframes blink { to { opacity: 0; } }
+    .code {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+      font-family: "Courier New", monospace;
+      color: #333;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
-  <section class="terminal">
-    <div class="bar">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-      <span class="title">secure-node://gateway/root</span>
-    </div>
-    <div class="screen">
-<span class="dim">[SYS] Initializing secure gateway...</span>
-<span class="dim">[SYS] Verifying endpoint integrity...</span>
-<span class="warn">[ALERT] Unauthorized listing request blocked.</span>
-
-<span class="dim">root@server:~$</span> Access denied.
-<span class="dim">root@server:~$</span> This endpoint is monitored.
-<span class="dim">root@server:~$</span> If you need access, contact administrator.
-<span class="dim">root@server:~$</span> <span class="cursor">_</span>
-    </div>
-  </section>
+  <main class="card">
+    <h1>404 Not Found</h1>
+    <p>The requested URL was not found on this server.</p>
+    <p>Please check the address and try again.</p>
+    <div class="code">Status: 404</div>
+  </main>
 </body>
 </html>
