@@ -381,7 +381,7 @@ END
 cat >/etc/cron.d/daily_reboot <<-END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-5 0 * * * root /sbin/reboot
+1 0 * * * root /sbin/reboot
 END
 
 service cron restart >/dev/null 2>&1

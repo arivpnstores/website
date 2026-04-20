@@ -268,14 +268,19 @@ function Installasi() {
     res9() { wget ${REPO}install/udp-custom.sh && chmod +x udp-custom.sh && bash udp-custom.sh; clear; }
     res10() { apt install dos2unix; wget ${REPO}api.sh && chmod +x api.sh && dos2unix api.sh && bash api.sh; clear; }
 
-    if [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "ubuntu" ]]; then
-        echo -e "${green}Setup nginx Untuk OS $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')${NC}"
+    OS_ID=$(grep -w ID /etc/os-release | head -n1 | cut -d= -f2 | tr -d '"')
+    OS_NAME=$(grep -w PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"')
+
+    if [[ "$OS_ID" == "ubuntu" ]]; then
+        echo -e "${green}Setup nginx Untuk OS $OS_NAME${NC}"
         setup_ubuntu
-    elif [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "debian" ]]; then
-        echo -e "${green}Setup nginx Untuk OS $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')${NC}"
+
+    elif [[ "$OS_ID" == "debian" || "$OS_ID" == "kali" ]]; then
+        echo -e "${green}Setup nginx Untuk OS $OS_NAME${NC}"
         setup_debian
+
     else
-        echo -e " OS Anda Tidak Didukung ( ${yell}$(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')${NC} )"
+        echo -e "OS Anda Tidak Didukung (${yell}$OS_NAME${NC})"
     fi
 }
 
@@ -395,7 +400,7 @@ function iinfo() {
 <code>EXP SCRIPT : </code><code>$EXP Hari</code>
 <code>━━━━━━━━━━━━━━━━━━━━</code>
 <i> Notifikasi Installer Script...</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"🔥ᴏʀᴅᴇʀ","url":"https://t.me/ARI_VPN_STORE"},{"text":"🔥GRUP","url":"https://t.me/ARI_VPN_STORE"}]]}'
+"'&reply_markup={"inline_keyboard":[[{"text":"🔥ᴏʀᴅᴇʀ","url":"https://t.me/ARI_VPN_STORE"},{"text":"🔥GRUP","url":"https://t.me/RAJA_VPN_STORE"}]]}'
     
     curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
     clear
@@ -428,22 +433,8 @@ mkdir -p /var/lib/ >/dev/null 2>&1
 echo "IP=" >> /var/lib/ipvps.conf
 
 clear
-echo -e "${blue} ┌───────────────────────────────────────────────┐${neutral}"
-echo -e "${blue} │                   ${bold_white}ANSENDAN${neutral}                    ${blue}│${neutral}"
-echo -e "${blue} │         ${green}┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐          ${blue}│${neutral}"
-echo -e "${blue} │         ${green}├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │           ${blue}│${neutral}"
-echo -e "${blue} │         ${green}┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴           ${neutral}${blue}│${neutral}"
-echo -e "${blue} │         ${yellow}Copyright${reset} (C)${gray} https://t.me/ARI_VPN_STORE      ${blue}│${neutral}"
-echo -e "${blue} └───────────────────────────────────────────────┘${neutral}"
-echo -e "${blue} ────────────────────────────────────────────────${neutral}"
-echo -e "${yellow}     Masukkan Nama Anda untuk memulai instalasi:${neutral}"
-echo -e "${blue} ────────────────────────────────────────────────${neutral}"
-echo ""
-until [[ $name =~ ^[a-zA-Z0-9_.-]+$ ]]; do
-read -rp "👉 Masukkan Nama Anda (tanpa spasi): " -e name
-done
-
-echo "XWAN STORE" > /etc/xray/username
+name="ARI STORE"
+echo "ARI STORE" > /etc/xray/username
 echo ""
 clear
 author=$name
@@ -506,7 +497,7 @@ fi
 fi
 mesg n || true
 clear
-welcome
+menu
 END
 
 chmod 644 /root/.profile
@@ -522,15 +513,6 @@ fi
 history -c
 serverV=$( curl -sS ${REPO}versi  )
 echo $serverV > /opt/.ver
-echo "00" > /home/daily_reboot
-aureb=$(cat /home/daily_reboot)
-b=11
-
-if [ $aureb -gt $b ]; then
-    gg="PM"
-else
-    gg="AM"
-fi
 
 cd
 curl -sS ifconfig.me > /etc/myipvps
@@ -561,13 +543,6 @@ echo -e "${green}┌────────────────────
 echo -e "${green}│${bold_white}          ✅ INSTALLASI SELESAI             ${green}│${NC}"
 echo -e "${green}└────────────────────────────────────────────┘${NC}"
 echo ""
-
-sleep 4
-echo -e "[ ${yell}PERINGATAN${NC} ] Apakah Anda ingin restart sekarang ? (y/n)? "
-read answer
-
-if [ "$answer" == "${answer#[Yy]}" ] ;then
-    exit 0
-else
-    reboot
-fi
+echo -e "Menu akan dibuka..."
+sleep 2
+/usr/local/sbin/menu
