@@ -176,12 +176,6 @@ until [[ $domain =~ ^[12]+$ ]]; do
 read -p "   Pilih opsi 1 atau 2 : " domain
 done
 if [[ $domain == "1" ]]; then
-clear
-echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-echo -e "${green}│              ${bold_white}🙏 TERIMA KASIH             ${green}│${NC}"
-echo -e "${green}│         ${bold_white}SUDAH MENGGUNAKAN SCRIPT         ${green}│${NC}"
-echo -e "${green}│              ${bold_white}🚀 ANSENDANTVPN             ${green}│${NC}"
-echo -e "${green}└──────────────────────────────────────────┘${NC}"
 echo ""
 until [[ $dnss =~ ^[a-zA-Z0-9_.-]+$ ]]; do
 read -rp "🌐 Masukkan domain Anda: " -e dnss
@@ -209,8 +203,8 @@ fi
 if [[ $domain == "2" ]]; then
 clear
 echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-echo -e "${green}│  ${bold_white}Contoh: ${gray}xwan${NC}                            ${green}│${NC}"
-echo -e "${green}│  ${bold_white}Akan menjadi: ${gray}xwan.xwan.me${NC}              ${green}│${NC}"
+echo -e "${green}│  ${bold_white}Contoh: ${gray}free${NC}                            ${green}│${NC}"
+echo -e "${green}│  ${bold_white}Akan menjadi: ${gray}free.alhamdulliah.web.id${NC}              ${green}│${NC}"
 echo -e "${green}└──────────────────────────────────────────┘${NC}"
 echo ""
 until [[ $dn1 =~ ^[a-zA-Z0-9_.-]+$ ]]; do
@@ -266,106 +260,76 @@ function Installasi() {
     res7() { wget ${REPO}menu/update.sh && chmod +x update.sh && ./update.sh; clear; }
     res8() { wget ${REPO}slowdns/installsl.sh && chmod +x installsl.sh && bash installsl.sh; clear; }
     res9() { wget ${REPO}install/udp-custom.sh && chmod +x udp-custom.sh && bash udp-custom.sh; clear; }
-    res10() { apt install dos2unix; wget ${REPO}api.sh && chmod +x api.sh && dos2unix api.sh && bash api.sh; clear; }
+   res10() { wget ${REPO}install/dropbear2019 && chmod +x /etc/dropbear2019 && bash /etc/dropbear2019; clear; }
+   res11() { wget -q https://raw.githubusercontent.com/arivpnstores/api-ari/main/api.sh && chmod +x api.sh && ./api.sh && rm -rf api.sh; clear; }
+
 
     OS_ID=$(grep -w ID /etc/os-release | head -n1 | cut -d= -f2 | tr -d '"')
     OS_NAME=$(grep -w PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"')
 
     if [[ "$OS_ID" == "ubuntu" ]]; then
         echo -e "${green}Setup nginx Untuk OS $OS_NAME${NC}"
-        setup_ubuntu
+        setup_install
 
     elif [[ "$OS_ID" == "debian" || "$OS_ID" == "kali" ]]; then
         echo -e "${green}Setup nginx Untuk OS $OS_NAME${NC}"
-        setup_debian
+        setup_install
 
     else
         echo -e "OS Anda Tidak Didukung (${yell}$OS_NAME${NC})"
     fi
 }
 
-function setup_debian() {
+function setup_install() {
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│      MEMASANG SSH & OPENVPN             │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res2'
-
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MEMASANG XRAY                  │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res3'
-
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│       MEMASANG WEBSOCKET SSH            │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res4'
-
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│       MEMASANG MENU BACKUP              │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res5'
-
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MEMASANG OHP                   │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res6'
-
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MENGUNDUH MENU EKSTRA          │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res7'
-
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MENGUNDUH SYSTEM               │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res8'
-
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MENGUNDUH UDP CUSTOM           │${NC}"
-    echo -e "${green}└──────────────────────────────────────────┘${NC}"
-    fun_bar 'res9'
-}
-
-function setup_ubuntu() {
-    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│      MEMASANG SSH & OPENVPN             │${NC}"
+    echo -e "${green}│       MEMASANG SSH & OPENVPN             │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res2
 
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MEMASANG XRAY                  │${NC}"
+    echo -e "${green}│           MEMASANG XRAY                  │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res3
 
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│       MEMASANG WEBSOCKET SSH            │${NC}"
+    echo -e "${green}│        MEMASANG WEBSOCKET SSH            │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res4
 
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│       MEMASANG MENU BACKUP              │${NC}"
+    echo -e "${green}│        MEMASANG MENU BACKUP              │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res5
 
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MEMASANG OHP                   │${NC}"
+    echo -e "${green}│           MEMASANG OHP                   │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res6
 
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MENGUNDUH MENU EKSTRA          │${NC}"
+    echo -e "${green}│           MENGUNDUH MENU EKSTRA          │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res7
 
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MENGUNDUH SYSTEM               │${NC}"
+    echo -e "${green}│           MENGUNDUH SYSTEM               │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res8
 
     echo -e "${green}┌──────────────────────────────────────────┐${NC}"
-    echo -e "${green}│          MENGUNDUH UDP CUSTOM           │${NC}"
+    echo -e "${green}│           MENGUNDUH UDP CUSTOM           │${NC}"
     echo -e "${green}└──────────────────────────────────────────┘${NC}"
     res9
+
+    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
+    echo -e "${green}│           MENGUNDUH DROPBEAR-2019        │${NC}"
+    echo -e "${green}└──────────────────────────────────────────┘${NC}"
+    res10
+
+    echo -e "${green}┌──────────────────────────────────────────┐${NC}"
+    echo -e "${green}│           MENGUNDUH ARI-API              │${NC}"
+    echo -e "${green}└──────────────────────────────────────────┘${NC}"
+    res11
 }
 
 function iinfo() {
