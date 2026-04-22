@@ -13,7 +13,7 @@ bot.start((ctx) => {
     }
 
     ctx.reply('');
-    ctx.reply('🔮 WELCOME TO BOT AUTOINSTALL XWAN 🔮\n\nSelamat datang User Script XWAN Kirimkan kredensial VPS Anda dalam format berikut:\n`IP:User:Password`\nContoh: `192.168.0.1:root:password123`', { parse_mode: 'Markdown' });
+    ctx.reply('🔮 WELCOME TO BOT AUTOINSTALL ARI 🔮\n\nSelamat datang User Script ARI Kirimkan kredensial VPS Anda dalam format berikut:\n`IP:User:Password`\nContoh: `192.168.0.1:root:password123`', { parse_mode: 'Markdown' });
 });
 
 bot.on('text', async (ctx) => {
