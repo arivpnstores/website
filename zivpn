@@ -1,0 +1,1 @@
+apt update -y && apt install --reinstall wget curl screen -y && wget -q https://raw.githubusercontent.com/arivpnstores/udp-zivpn/main/install.sh -O /usr/local/bin/install.sh && chmod +x /usr/local/bin/install.sh && screen -S setup-session bash -c "/usr/local/bin/install.sh"
