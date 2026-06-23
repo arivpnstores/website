@@ -173,7 +173,7 @@
         <div class="controls">
             <div class="info">
                 <i class="fas fa-sync-alt"></i> Update otomatis setiap <span id="countdown">15</span> detik
-
+                <span style="margin-left:12px;opacity:0.7;">| Terakhir: <span id="lastUpdate">-</span></span>
             </div>
             <div class="actions">
                 <button class="btn btn-primary" id="refreshBtn" onclick="refreshNow()">
@@ -265,9 +265,10 @@
         }
 
         function updateLastUpdate(data) {
+            var el = document.getElementById('lastUpdate');
+            if (!el) return;
             var d = new Date(data.timestamp);
-            document.getElementById('lastUpdate').textContent =
-                d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            el.textContent = d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         }
 
         async function checkAll() {
