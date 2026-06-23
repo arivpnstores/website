@@ -172,7 +172,7 @@
 
         <div class="controls">
             <div class="info">
-                <i class="fas fa-sync-alt"></i> Update otomatis setiap <span id="countdown">15</span> detik
+                <i class="fas fa-sync-alt"></i> Update otomatis setiap <span id="countdown">1</span> detik
 
             </div>
             <div class="actions">
@@ -209,7 +209,7 @@
     </div>
 
     <script>
-        var countdownValue = 15;
+        var countdownValue = 1;
         var countdownInterval = null;
 
         function getStatusUrl() {
@@ -293,7 +293,7 @@
         }
 
         function resetCountdown() {
-            countdownValue = 15;
+            countdownValue = 1;
             document.getElementById('countdown').textContent = countdownValue;
             if (countdownInterval) clearInterval(countdownInterval);
             countdownInterval = setInterval(function() {
