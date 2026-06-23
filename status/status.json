@@ -177,7 +177,7 @@
     },
     {
       "name": "BOT ALIBABA",
-      "host": "47.84.120.134",
+      "host": "bot.rajaserver.web.id",
       "ping": null,
       "port80": {
         "status": "unknown",
