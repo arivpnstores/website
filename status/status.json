@@ -134,7 +134,7 @@
       "overall": "online"
     },
     {
-      "name": "ID Biznet VIP",
+      "name": "ID BIZNET VIP",
       "host": "ssl-idbiznetvip.rajaserver.web.id",
       "ping": 21,
       "port80": {
@@ -148,7 +148,7 @@
       "overall": "online"
     },
     {
-      "name": "ID Biznet VIP 2",
+      "name": "ID BIZNET VIP 2",
       "host": "ssl-idbiznetvip2.rajaserver.web.id",
       "ping": 22,
       "port80": {
@@ -162,7 +162,7 @@
       "overall": "online"
     },
     {
-      "name": "ID Biznet VIP 3",
+      "name": "ID BIZNET VIP 3",
       "host": "ssl-idbiznetvip3.rajaserver.web.id",
       "ping": 21,
       "port80": {
