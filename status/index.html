@@ -172,7 +172,7 @@
 
         <div class="controls">
             <div class="info">
-                <i class="fas fa-sync-alt"></i> Update otomatis setiap <span id="countdown">3</span> detik
+                <i class="fas fa-sync-alt"></i> Update otomatis setiap <span id="countdown">15</span> detik
 
             </div>
             <div class="actions">
@@ -210,7 +210,7 @@
 
     <script>
         var STATUS_URL = 'status.json?t=' + Date.now();
-        var countdownValue = 3;
+        var countdownValue = 15;
         var countdownInterval = null;
 
         function portBadge(result) {
@@ -285,7 +285,7 @@
         }
 
         function resetCountdown() {
-            countdownValue = 3;
+            countdownValue = 15;
             document.getElementById('countdown').textContent = countdownValue;
             if (countdownInterval) clearInterval(countdownInterval);
             countdownInterval = setInterval(function() {
