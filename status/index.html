@@ -38,7 +38,7 @@
         .hero p { color: #b8d4f0; margin-top: 8px; font-size: 0.95rem; }
         .hero .note { font-size: 0.8rem; color: #93c5fd; margin-top: 4px; }
 
-        .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 25px 0; }
+        .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0; }
         .summary-card {
             background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
             border-radius: 16px; padding: 20px; text-align: center;
@@ -100,8 +100,6 @@
         .badge.online { background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
         .badge.degraded { background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
         .badge.offline { background: rgba(239,68,68,0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
-        .badge.checking { background: rgba(96,165,250,0.2); color: #93c5fd; border: 1px solid rgba(96,165,250,0.3); }
-
         .port-status {
             display: inline-flex; align-items: center; gap: 5px;
             padding: 3px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 500;
@@ -109,20 +107,11 @@
         .port-open { background: rgba(16,185,129,0.15); color: #34d399; }
         .port-closed { background: rgba(239,68,68,0.15); color: #f87171; }
         .port-timeout { background: rgba(245,158,11,0.15); color: #fbbf24; }
-        .port-checking { background: rgba(96,165,250,0.15); color: #93c5fd; }
         .port-blocked { background: rgba(148,163,184,0.15); color: #94a3b8; cursor: help; }
         .port-status i { font-size: 0.65rem; }
 
-        .ping-value { font-weight: 600; }
-        .ping-value.fast { color: #34d399; }
-        .ping-value.medium { color: #fbbf24; }
-        .ping-value.slow { color: #f87171; }
-        .ping-value.na { color: #94a3b8; }
-
         .footer { text-align: center; padding: 30px 0 60px; color: #b8d4f0; font-size: 0.85rem; }
         .footer a { color: #ffd700; text-decoration: none; }
-
-        .dns-fail { color: #fbbf24; font-size: 0.75rem; margin-top: 4px; }
 
         @media (max-width: 900px) {
             .summary { grid-template-columns: repeat(2, 1fr); }
@@ -179,10 +168,6 @@
                 <div class="number red" id="offlineServers">0</div>
                 <div class="label">Offline</div>
             </div>
-            <div class="summary-card">
-                <div class="number blue" id="avgLatency">0ms</div>
-                <div class="label">Rata-rata Latency</div>
-            </div>
         </div>
 
         <div class="controls">
@@ -203,7 +188,6 @@
                     <tr>
                         <th>Server</th>
                         <th>Status</th>
-                        <th>Ping</th>
                         <th>SSH (22)</th>
                         <th>HTTP (80)</th>
                         <th>HTTPS (443)</th>
@@ -211,7 +195,7 @@
                 </thead>
                 <tbody id="serverTableBody">
                     <tr>
-                        <td colspan="6" style="text-align:center; color:#94a3b8; padding:40px;">
+                        <td colspan="5" style="text-align:center; color:#94a3b8; padding:40px;">
                             <i class="fas fa-spinner fa-pulse" style="font-size:1.5rem;"></i><br><br>
                             Memeriksa server...
                         </td>
@@ -230,19 +214,6 @@
         var countdownValue = 30;
         var countdownInterval = null;
 
-        function formatLatency(ms) {
-            if (ms === null || ms === undefined) return '-';
-            if (ms < 1) return '&lt;1ms';
-            return ms + 'ms';
-        }
-
-        function getPingClass(ms) {
-            if (ms === null || ms === undefined || ms === '-') return 'na';
-            if (ms <= 100) return 'fast';
-            if (ms <= 300) return 'medium';
-            return 'slow';
-        }
-
         function portBadge(result) {
             var cls, icon, text;
             switch (result.status) {
@@ -258,15 +229,11 @@
                 default:
                     cls = 'port-blocked'; icon = 'fa-question-circle'; text = result.status || 'Unknown';
             }
-            var extra = result.status === 'open' ? '' : ' <span style="opacity:0.5;font-size:0.7rem;">' + formatLatency(result.latency) + '</span>';
+            var extra = result.status === 'open' ? '' : ' <span style="opacity:0.5;font-size:0.7rem;">' + result.latency + 'ms</span>';
             return '<span class="port-status ' + cls + '" title="' + (result.detail || result.status) + ' (' + result.latency + 'ms)"><i class="fas ' + icon + '"></i> ' + text + extra + '</span>';
         }
 
         function renderRow(server) {
-            var pingHtml = server.ping !== null && server.ping !== undefined
-                ? '<span class="ping-value ' + getPingClass(server.ping) + '">' + formatLatency(server.ping) + '</span>'
-                : '<span class="ping-value na">-</span>';
-
             var statusIcon, statusText;
             switch (server.overall) {
                 case 'online': statusIcon = 'fa-check-circle'; statusText = 'Online'; break;
@@ -276,9 +243,8 @@
             var statusBadge = '<span class="badge ' + server.overall + '"><i class="fas ' + statusIcon + '"></i> ' + statusText + '</span>';
 
             return '<tr>' +
-                '<td><div class="server-name">' + server.name + '<small>' + server.host + '</small></div></td>' +
+                '<td><div class="server-name">' + server.name + '</div></td>' +
                 '<td>' + statusBadge + '</td>' +
-                '<td>' + pingHtml + '</td>' +
                 '<td>' + portBadge(server.port22) + '</td>' +
                 '<td>' + portBadge(server.port80) + '</td>' +
                 '<td>' + portBadge(server.port443) + '</td>' +
@@ -289,7 +255,6 @@
             document.getElementById('totalServers').textContent = data.summary.total;
             document.getElementById('onlineServers').textContent = data.summary.online;
             document.getElementById('offlineServers').textContent = data.summary.offline;
-            document.getElementById('avgLatency').textContent = data.summary.avgLatency !== null ? data.summary.avgLatency + 'ms' : '-';
         }
 
         function renderTable(data) {
@@ -313,7 +278,7 @@
                 updateLastUpdate(data);
             } catch (e) {
                 var tbody = document.getElementById('serverTableBody');
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#f87171;padding:40px;">' +
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#f87171;padding:40px;">' +
                     '<i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i><br><br>' +
                     'Gagal memuat data server. Coba refresh.</td></tr>';
             }
