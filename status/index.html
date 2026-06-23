@@ -161,7 +161,7 @@
         <div class="container">
             <h1><i class="fas fa-server"></i> Status Server</h1>
             <p>Pemantauan real-time ketersediaan server dan port utama</p>
-            <div class="note"><i class="fas fa-info-circle"></i> Koneksi via HTTPS (browser). Port 22 dicek via timing TCP, port 80/443 dicek via koneksi HTTPS</div>
+            <div class="note"><i class="fas fa-info-circle"></i> Pengecekan server via TCP koneksi langsung (update setiap 5 menit)</div>
         </div>
     </section>
 
@@ -226,24 +226,13 @@
     </div>
 
     <script>
-        var SERVERS = [
-            { name: 'SG VIP', host: 'ssl-sgvip.rajaserver.web.id' },
-            { name: 'SG VVIP', host: 'ssl-sgvvip.rajaserver.web.id' },
-            { name: 'SG VVIP 2', host: 'ssl-sgvvip2.rajaserver.web.id' },
-            { name: 'SG VVIP 3', host: 'ssl-sgvvip3.rajaserver.web.id' },
-            { name: 'ID Biznet VIP', host: 'ssl-idbiznetvip.rajaserver.web.id' },
-            { name: 'ID Biznet VIP 2', host: 'ssl-idbiznetvip2.rajaserver.web.id' },
-            { name: 'ID Biznet VIP 3', host: 'ssl-idbiznetvip3.rajaserver.web.id' },
-        ];
-
-        var isChecking = false;
+        var STATUS_URL = 'status.json?t=' + Date.now();
         var countdownValue = 30;
         var countdownInterval = null;
-        var DNS_CACHE = {};
 
         function formatLatency(ms) {
             if (ms === null || ms === undefined) return '-';
-            if (ms < 1) return '<1ms';
+            if (ms < 1) return '&lt;1ms';
             return ms + 'ms';
         }
 
@@ -252,97 +241,6 @@
             if (ms <= 100) return 'fast';
             if (ms <= 300) return 'medium';
             return 'slow';
-        }
-
-        async function dnsResolves(host) {
-            if (DNS_CACHE[host] !== undefined) return DNS_CACHE[host];
-            var start = performance.now();
-            try {
-                var c = new AbortController();
-                var t = setTimeout(function() { c.abort(); }, 3000);
-                await fetch('https://' + host + ':9/', { mode: 'no-cors', signal: c.signal });
-                clearTimeout(t);
-                DNS_CACHE[host] = true;
-                return true;
-            } catch (e) {
-                clearTimeout();
-                var elapsed = Math.round(performance.now() - start);
-                // If error took > 100ms, DNS probably resolved (TCP attempt took time)
-                var resolves = elapsed > 100;
-                DNS_CACHE[host] = resolves;
-                return resolves;
-            }
-        }
-
-        async function checkPort(host, port, timeoutMs) {
-            if (!timeoutMs) timeoutMs = 4000;
-            // Always use HTTPS to avoid mixed-content blocking
-            var url = 'https://' + host + ':' + port + '/';
-            var start = performance.now();
-
-            try {
-                var controller = new AbortController();
-                var timer = setTimeout(function() { controller.abort(); }, timeoutMs);
-                await fetch(url, { mode: 'no-cors', signal: controller.signal });
-                clearTimeout(timer);
-                return { status: 'open', latency: Math.round(performance.now() - start) };
-            } catch (e) {
-                var elapsed = Math.round(performance.now() - start);
-                if (e.name === 'AbortError') {
-                    return { status: 'timeout', latency: elapsed };
-                }
-                // Extremely fast failure (< 30ms) = browser port restriction or DNS fail
-                if (elapsed < 30) {
-                    return { status: 'blocked', latency: elapsed, detail: 'Browser restriction' };
-                }
-                // Fast failure (30-200ms) = connection refused or DNS NXDOMAIN
-                if (elapsed <= 200) {
-                    return { status: 'closed', latency: elapsed };
-                }
-                // Slower failure (200-1000ms) = TCP handshake succeeded but TLS/HTTP failed
-                // This means the port IS open, just not serving HTTPS
-                if (elapsed > 200 && elapsed <= 2000) {
-                    return { status: 'open', latency: elapsed };
-                }
-                // Slow failure (> 2000ms) = ambiguous, likely timed out or very slow
-                return { status: 'timeout', latency: elapsed };
-            }
-        }
-
-        async function checkServer(server) {
-            var results = await Promise.all([
-                checkPort(server.host, 22, 3000),
-                checkPort(server.host, 80, 4000),
-                checkPort(server.host, 443, 4000),
-            ]);
-
-            var ping = null;
-            if (results[2].status === 'open') {
-                ping = results[2].latency;
-            } else if (results[1].status === 'open') {
-                ping = results[1].latency;
-            }
-
-            // Determine overall status
-            var openPorts = 0;
-            for (var i = 0; i < results.length; i++) {
-                if (results[i].status === 'open') openPorts++;
-            }
-
-            var overall;
-            if (openPorts === 3) overall = 'online';
-            else if (openPorts === 0) overall = 'offline';
-            else overall = 'degraded';
-
-            return {
-                name: server.name,
-                host: server.host,
-                ping: ping,
-                port22: results[0],
-                port80: results[1],
-                port443: results[2],
-                overall: overall,
-            };
         }
 
         function portBadge(result) {
@@ -357,16 +255,10 @@
                 case 'timeout':
                     cls = 'port-timeout'; icon = 'fa-hourglass-end'; text = 'Timeout';
                     break;
-                case 'blocked':
-                    cls = 'port-blocked'; icon = 'fa-ban'; text = 'N/A';
-                    break;
                 default:
-                    cls = 'port-blocked'; icon = 'fa-question-circle'; text = 'Unknown';
+                    cls = 'port-blocked'; icon = 'fa-question-circle'; text = result.status || 'Unknown';
             }
             var extra = result.status === 'open' ? '' : ' <span style="opacity:0.5;font-size:0.7rem;">' + formatLatency(result.latency) + '</span>';
-            if (result.status === 'blocked') {
-                extra = ' <span style="opacity:0.5;font-size:0.7rem;">(browser)</span>';
-            }
             return '<span class="port-status ' + cls + '" title="' + (result.detail || result.status) + ' (' + result.latency + 'ms)"><i class="fas ' + icon + '"></i> ' + text + extra + '</span>';
         }
 
@@ -393,64 +285,40 @@
                 '</tr>';
         }
 
-        function updateSummary(results) {
-            var total = results.length;
-            var online = 0, offline = 0;
-            var pings = [];
-            for (var i = 0; i < results.length; i++) {
-                if (results[i].overall === 'online') online++;
-                else if (results[i].overall === 'offline') offline++;
-                if (results[i].ping !== null && results[i].ping !== undefined) {
-                    pings.push(results[i].ping);
-                }
-            }
-            var avgPing = pings.length > 0
-                ? Math.round(pings.reduce(function(a, b) { return a + b; }, 0) / pings.length)
-                : null;
-
-            document.getElementById('totalServers').textContent = total;
-            document.getElementById('onlineServers').textContent = online;
-            document.getElementById('offlineServers').textContent = offline;
-            document.getElementById('avgLatency').textContent = avgPing !== null ? avgPing + 'ms' : '-';
+        function updateSummary(data) {
+            document.getElementById('totalServers').textContent = data.summary.total;
+            document.getElementById('onlineServers').textContent = data.summary.online;
+            document.getElementById('offlineServers').textContent = data.summary.offline;
+            document.getElementById('avgLatency').textContent = data.summary.avgLatency !== null ? data.summary.avgLatency + 'ms' : '-';
         }
 
-        function renderTable(results) {
+        function renderTable(data) {
             var tbody = document.getElementById('serverTableBody');
-            tbody.innerHTML = results.map(renderRow).join('');
+            tbody.innerHTML = data.servers.map(renderRow).join('');
         }
 
-        function updateLastUpdate() {
-            var now = new Date();
+        function updateLastUpdate(data) {
+            var d = new Date(data.timestamp);
             document.getElementById('lastUpdate').textContent =
-                now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         }
 
         async function checkAll() {
-            if (isChecking) return;
-            isChecking = true;
             document.getElementById('refreshBtn').disabled = true;
-
-            var tbody = document.getElementById('serverTableBody');
-            tbody.innerHTML = SERVERS.map(function(s) {
-                return '<tr>' +
-                    '<td><div class="server-name">' + s.name + '<small>' + s.host + '</small></div></td>' +
-                    '<td><span class="badge checking"><i class="fas fa-spinner fa-pulse"></i> Checking</span></td>' +
-                    '<td><span class="ping-value na"><i class="fas fa-spinner fa-pulse"></i></span></td>' +
-                    '<td><span class="port-status port-checking"><i class="fas fa-spinner fa-pulse"></i> Checking</span></td>' +
-                    '<td><span class="port-status port-checking"><i class="fas fa-spinner fa-pulse"></i> Checking</span></td>' +
-                    '<td><span class="port-status port-checking"><i class="fas fa-spinner fa-pulse"></i> Checking</span></td>' +
-                    '</tr>';
-            }).join('');
-
-            var results = await Promise.all(SERVERS.map(checkServer));
-
-            renderTable(results);
-            updateSummary(results);
-            updateLastUpdate();
-            resetCountdown();
-
-            isChecking = false;
+            try {
+                var resp = await fetch(STATUS_URL);
+                var data = await resp.json();
+                renderTable(data);
+                updateSummary(data);
+                updateLastUpdate(data);
+            } catch (e) {
+                var tbody = document.getElementById('serverTableBody');
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#f87171;padding:40px;">' +
+                    '<i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i><br><br>' +
+                    'Gagal memuat data server. Coba refresh.</td></tr>';
+            }
             document.getElementById('refreshBtn').disabled = false;
+            resetCountdown();
         }
 
         function resetCountdown() {
@@ -461,12 +329,14 @@
                 countdownValue--;
                 document.getElementById('countdown').textContent = countdownValue;
                 if (countdownValue <= 0) {
+                    STATUS_URL = 'status.json?t=' + Date.now();
                     checkAll();
                 }
             }, 1000);
         }
 
         function refreshNow() {
+            STATUS_URL = 'status.json?t=' + Date.now();
             checkAll();
         }
 
