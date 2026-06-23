@@ -209,9 +209,13 @@
     </div>
 
     <script>
-        var STATUS_URL = 'status.json?t=' + Date.now();
         var countdownValue = 15;
         var countdownInterval = null;
+
+        function getStatusUrl() {
+            var base = window.location.pathname.replace(/\/?$/, '/');
+            return base + 'status.json?t=' + Date.now();
+        }
 
         function portBadge(result) {
             var cls, icon, text;
@@ -269,12 +273,15 @@
         async function checkAll() {
             document.getElementById('refreshBtn').disabled = true;
             try {
-                var resp = await fetch(STATUS_URL);
+                var url = getStatusUrl();
+                var resp = await fetch(url);
+                if (!resp.ok) throw new Error('HTTP ' + resp.status + ': ' + resp.statusText);
                 var data = await resp.json();
                 renderTable(data);
                 updateSummary(data);
                 updateLastUpdate(data);
             } catch (e) {
+                console.error('Status fetch error:', e);
                 var tbody = document.getElementById('serverTableBody');
                 tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#f87171;padding:40px;">' +
                     '<i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i><br><br>' +
@@ -292,14 +299,12 @@
                 countdownValue--;
                 document.getElementById('countdown').textContent = countdownValue;
                 if (countdownValue <= 0) {
-                    STATUS_URL = 'status.json?t=' + Date.now();
                     checkAll();
                 }
             }, 1000);
         }
 
         function refreshNow() {
-            STATUS_URL = 'status.json?t=' + Date.now();
             checkAll();
         }
 
