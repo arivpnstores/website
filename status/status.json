@@ -1,82 +1,12 @@
 {
   "timestamp": "2026-06-23T10:35:21.793Z",
   "summary": {
-    "total": 12,
+    "total": 13,
     "online": 12,
     "offline": 0,
     "avgLatency": 31
   },
   "servers": [
-    {
-      "name": "EDU-1 DIRECT",
-      "host": "eduserv1.aiosc.my.id",
-      "ping": 26,
-      "port80": {
-        "status": "open",
-        "latency": 51
-      },
-      "port443": {
-        "status": "open",
-        "latency": 26
-      },
-      "overall": "online"
-    },
-    {
-      "name": "EDU-2 DIRECT",
-      "host": "eduserv2.aiosc.my.id",
-      "ping": 27,
-      "port80": {
-        "status": "open",
-        "latency": 25
-      },
-      "port443": {
-        "status": "open",
-        "latency": 27
-      },
-      "overall": "online"
-    },
-    {
-      "name": "EDU-3 DIRECT",
-      "host": "eduserv3.aiosc.my.id",
-      "ping": 25,
-      "port80": {
-        "status": "open",
-        "latency": 25
-      },
-      "port443": {
-        "status": "open",
-        "latency": 25
-      },
-      "overall": "online"
-    },
-    {
-      "name": "CLOUDFRONT REGULER",
-      "host": "d1lnzdlpso56a0.cloudfront.net",
-      "ping": 27,
-      "port80": {
-        "status": "open",
-        "latency": 28
-      },
-      "port443": {
-        "status": "open",
-        "latency": 27
-      },
-      "overall": "online"
-    },
-    {
-      "name": "VIP CLOUDFRONT PREMIUM",
-      "host": "d1jrahl0hl8ghp.cloudfront.net",
-      "ping": 28,
-      "port80": {
-        "status": "open",
-        "latency": 28
-      },
-      "port443": {
-        "status": "open",
-        "latency": 28
-      },
-      "overall": "online"
-    },
     {
       "name": "SG VIP",
       "host": "ssl-sgvip.rajaserver.web.id",
@@ -174,6 +104,90 @@
         "latency": 21
       },
       "overall": "online"
+    },
+    {
+      "name": "EDU-1 DIRECT",
+      "host": "eduserv1.aiosc.my.id",
+      "ping": 26,
+      "port80": {
+        "status": "open",
+        "latency": 51
+      },
+      "port443": {
+        "status": "open",
+        "latency": 26
+      },
+      "overall": "online"
+    },
+    {
+      "name": "EDU-2 DIRECT",
+      "host": "eduserv2.aiosc.my.id",
+      "ping": 27,
+      "port80": {
+        "status": "open",
+        "latency": 25
+      },
+      "port443": {
+        "status": "open",
+        "latency": 27
+      },
+      "overall": "online"
+    },
+    {
+      "name": "EDU-3 DIRECT",
+      "host": "eduserv3.aiosc.my.id",
+      "ping": 25,
+      "port80": {
+        "status": "open",
+        "latency": 25
+      },
+      "port443": {
+        "status": "open",
+        "latency": 25
+      },
+      "overall": "online"
+    },
+    {
+      "name": "CLOUDFRONT REGULER",
+      "host": "d1lnzdlpso56a0.cloudfront.net",
+      "ping": 27,
+      "port80": {
+        "status": "open",
+        "latency": 28
+      },
+      "port443": {
+        "status": "open",
+        "latency": 27
+      },
+      "overall": "online"
+    },
+    {
+      "name": "VIP CLOUDFRONT PREMIUM",
+      "host": "d1jrahl0hl8ghp.cloudfront.net",
+      "ping": 28,
+      "port80": {
+        "status": "open",
+        "latency": 28
+      },
+      "port443": {
+        "status": "open",
+        "latency": 28
+      },
+      "overall": "online"
+    },
+    {
+      "name": "BOT ALIBABA",
+      "host": "47.84.120.134",
+      "ping": null,
+      "port80": {
+        "status": "unknown",
+        "latency": 0
+      },
+      "port443": {
+        "status": "unknown",
+        "latency": 0
+      },
+      "overall": "offline"
     }
   ]
 }

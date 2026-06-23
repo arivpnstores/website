@@ -3,11 +3,6 @@ const fs = require('fs');
 const path = require('path');
 
 const SERVERS = [
-  { name: 'EDU-1 DIRECT', host: 'eduserv1.aiosc.my.id' },
-  { name: 'EDU-2 DIRECT', host: 'eduserv2.aiosc.my.id' },
-  { name: 'EDU-3 DIRECT', host: 'eduserv3.aiosc.my.id' },
-  { name: 'CLOUDFRONT REGULER', host: 'd1lnzdlpso56a0.cloudfront.net' },
-  { name: 'VIP CLOUDFRONT PREMIUM', host: 'd1jrahl0hl8ghp.cloudfront.net' },
   { name: 'SG VIP', host: 'ssl-sgvip.rajaserver.web.id' },
   { name: 'SG VVIP', host: 'ssl-sgvvip.rajaserver.web.id' },
   { name: 'SG VVIP 2', host: 'ssl-sgvvip2.rajaserver.web.id' },
@@ -15,6 +10,12 @@ const SERVERS = [
   { name: 'ID Biznet VIP', host: 'ssl-idbiznetvip.rajaserver.web.id' },
   { name: 'ID Biznet VIP 2', host: 'ssl-idbiznetvip2.rajaserver.web.id' },
   { name: 'ID Biznet VIP 3', host: 'ssl-idbiznetvip3.rajaserver.web.id' },
+  { name: 'EDU-1 DIRECT', host: 'eduserv1.aiosc.my.id' },
+  { name: 'EDU-2 DIRECT', host: 'eduserv2.aiosc.my.id' },
+  { name: 'EDU-3 DIRECT', host: 'eduserv3.aiosc.my.id' },
+  { name: 'CLOUDFRONT REGULER', host: 'd1lnzdlpso56a0.cloudfront.net' },
+  { name: 'VIP CLOUDFRONT PREMIUM', host: 'd1jrahl0hl8ghp.cloudfront.net' },
+  { name: 'BOT ALIBABA', host: '47.84.120.134' },
 ];
 
 const PORTS = [80, 443];
