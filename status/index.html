@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Status Server - PT Raja Server Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center; height: 70px;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.1rem; color: #2c3e50; text-decoration: none; }
+        .nav-logo img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: #2c3e50; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #667eea; }
+
+        /* Hero */
+        .hero {
+            padding: 120px 0 40px; text-align: center; color: white;
+        }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; }
+        .hero h1 i { color: #ffd700; }
+        .hero p { color: #b8d4f0; margin-top: 8px; font-size: 1rem; }
+
+        /* Summary Cards */
+        .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 30px 0; }
+        .summary-card {
+            background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+            border-radius: 16px; padding: 20px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .summary-card .number { font-size: 2rem; font-weight: 700; color: white; }
+        .summary-card .label { font-size: 0.85rem; color: #b8d4f0; margin-top: 4px; }
+        .summary-card .number.green { color: #10b981; }
+        .summary-card .number.red { color: #ef4444; }
+        .summary-card .number.yellow { color: #f59e0b; }
+        .summary-card .number.blue { color: #60a5fa; }
+
+        /* Controls */
+        .controls {
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            border-radius: 16px; padding: 15px 20px; margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; gap: 12px;
+        }
+        .controls .info { color: #e8f4fd; font-size: 0.9rem; }
+        .controls .info span { color: #ffd700; font-weight: 600; }
+        .controls .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn {
+            padding: 10px 24px; border-radius: 25px; border: none;
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem;
+            cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e); color: #2c3e50;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,215,0,0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .btn-outline {
+            background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+
+        /* Table */
+        .table-wrapper {
+            background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden; margin-bottom: 40px;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        thead th {
+            padding: 16px 18px; text-align: left; font-weight: 600; font-size: 0.85rem;
+            color: #b8d4f0; text-transform: uppercase; letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        tbody td {
+            padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: #e8f4fd; font-size: 0.9rem; vertical-align: middle;
+        }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background: rgba(255,255,255,0.06); }
+
+        .server-name { font-weight: 600; color: white; }
+        .server-name small { display: block; font-weight: 400; font-size: 0.75rem; color: #94a3b8; }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px;
+            border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+        }
+        .badge.online { background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+        .badge.degraded { background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+        .badge.offline { background: rgba(239,68,68,0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+        .badge.checking { background: rgba(96,165,250,0.2); color: #93c5fd; border: 1px solid rgba(96,165,250,0.3); }
+
+        .port-status {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 3px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 500;
+        }
+        .port-open { background: rgba(16,185,129,0.15); color: #34d399; }
+        .port-closed { background: rgba(239,68,68,0.15); color: #f87171; }
+        .port-timeout { background: rgba(245,158,11,0.15); color: #fbbf24; }
+        .port-checking { background: rgba(96,165,250,0.15); color: #93c5fd; }
+        .port-unknown { background: rgba(148,163,184,0.15); color: #94a3b8; }
+        .port-status i { font-size: 0.65rem; }
+
+        .ping-value { font-weight: 600; }
+        .ping-value.fast { color: #34d399; }
+        .ping-value.medium { color: #fbbf24; }
+        .ping-value.slow { color: #f87171; }
+        .ping-value.na { color: #94a3b8; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 0 60px; color: #b8d4f0; font-size: 0.85rem; }
+        .footer a { color: #ffd700; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .summary { grid-template-columns: repeat(2, 1fr); }
+            thead th, tbody td { padding: 12px 10px; font-size: 0.8rem; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.5rem; }
+            .summary { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .summary-card { padding: 14px 10px; }
+            .summary-card .number { font-size: 1.5rem; }
+            .controls { flex-direction: column; text-align: center; }
+            .table-wrapper { overflow-x: auto; }
+            table { min-width: 600px; }
+            .nav-links a { font-size: 0.8rem; }
+            .nav-logo { font-size: 0.9rem; }
+            .nav-logo img { width: 32px; height: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="https://raw.githubusercontent.com/arivpnstores/website/main/pp.jpg" alt="PT Raja Server Premium">
+                PT RAJA SERVER PREMIUM
+            </a>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/status/" class="active">Status Server</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1><i class="fas fa-server"></i> Status Server</h1>
+            <p>Pemantauan real-time ketersediaan server dan port</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="summary" id="summary">
+            <div class="summary-card">
+                <div class="number" id="totalServers">0</div>
+                <div class="label">Total Server</div>
+            </div>
+            <div class="summary-card">
+                <div class="number green" id="onlineServers">0</div>
+                <div class="label">Online</div>
+            </div>
+            <div class="summary-card">
+                <div class="number red" id="offlineServers">0</div>
+                <div class="label">Offline</div>
+            </div>
+            <div class="summary-card">
+                <div class="number blue" id="avgLatency">0ms</div>
+                <div class="label">Rata-rata Latency</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="info">
+                <i class="fas fa-sync-alt"></i> Update otomatis setiap <span id="countdown">30</span> detik
+                | Terakhir: <span id="lastUpdate">-</span>
+            </div>
+            <div class="actions">
+                <button class="btn btn-primary" id="refreshBtn" onclick="refreshNow()">
+                    <i class="fas fa-sync-alt"></i> Refresh Now
+                </button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Server</th>
+                        <th>Status</th>
+                        <th>Ping</th>
+                        <th>SSH (22)</th>
+                        <th>HTTP (80)</th>
+                        <th>HTTPS (443)</th>
+                    </tr>
+                </thead>
+                <tbody id="serverTableBody">
+                    <tr>
+                        <td colspan="6" style="text-align:center; color:#94a3b8; padding:40px;">
+                            <i class="fas fa-spinner fa-pulse" style="font-size:1.5rem;"></i><br><br>
+                            Memeriksa server...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 <a href="/">PT Raja Server Premium</a> | Status Server Monitoring</p>
+        </div>
+    </div>
+
+    <script>
+        const SERVERS = [
+            { name: 'SG VIP', host: 'ssl-sgvip.rajaserver.web.id' },
+            { name: 'SG VVIP', host: 'ssl-sgvvip.rajaserver.web.id' },
+            { name: 'SG VVIP 2', host: 'ssl-sgvvip2.rajaserver.web.id' },
+            { name: 'SG VVIP 3', host: 'ssl-sgvvip3.rajaserver.web.id' },
+            { name: 'ID Biznet VIP', host: 'ssl-idbiznetvip.rajaserver.web.id' },
+            { name: 'ID Biznet VIP 2', host: 'ssl-idbiznetvip2.rajaserver.web.id' },
+            { name: 'ID Biznet VIP 3', host: 'ssl-idbiznetvip3.rajaserver.web.id' },
+        ];
+
+        let isChecking = false;
+        let countdownValue = 30;
+        let countdownInterval = null;
+
+        function getPortIcon(port) {
+            if (port === 22) return 'fa-terminal';
+            if (port === 80) return 'fa-globe';
+            if (port === 443) return 'fa-lock';
+            return 'fa-plug';
+        }
+
+        function getPortLabel(port) {
+            if (port === 22) return 'SSH';
+            if (port === 80) return 'HTTP';
+            if (port === 443) return 'HTTPS';
+            return port;
+        }
+
+        function formatLatency(ms) {
+            if (ms === null || ms === undefined) return '-';
+            if (ms < 1) return '<1ms';
+            return ms + 'ms';
+        }
+
+        function getPingClass(ms) {
+            if (ms === null || ms === undefined || ms === '-') return 'na';
+            if (ms <= 100) return 'fast';
+            if (ms <= 300) return 'medium';
+            return 'slow';
+        }
+
+        function getStatusIcon(status) {
+            if (status === 'open') return '<i class="fas fa-check-circle"></i>';
+            if (status === 'closed') return '<i class="fas fa-times-circle"></i>';
+            if (status === 'timeout') return '<i class="fas fa-hourglass-end"></i>';
+            return '<i class="fas fa-question-circle"></i>';
+        }
+
+        async function checkPort(host, port, timeoutMs = 6000) {
+            const protocol = port === 443 ? 'https' : 'http';
+            const url = protocol + '://' + host + ':' + port + '/';
+            const start = performance.now();
+
+            try {
+                const controller = new AbortController();
+                const timer = setTimeout(function() { controller.abort(); }, timeoutMs);
+                await fetch(url, { mode: 'no-cors', signal: controller.signal });
+                clearTimeout(timer);
+                return { status: 'open', latency: Math.round(performance.now() - start) };
+            } catch (e) {
+                clearTimeout(e.name === 'AbortError' ? undefined : undefined);
+                const elapsed = Math.round(performance.now() - start);
+                if (e.name === 'AbortError') {
+                    return { status: 'timeout', latency: elapsed };
+                }
+                // For non-HTTP ports (22/SSH), if TCP handshake succeeds but HTTP fails,
+                // the error takes longer than a simple "connection refused"
+                if (port === 22 && elapsed > 800) {
+                    return { status: 'open', latency: elapsed };
+                }
+                return { status: 'closed', latency: elapsed };
+            }
+        }
+
+        async function checkServer(server) {
+            const results = await Promise.all([
+                checkPort(server.host, 22),
+                checkPort(server.host, 80),
+                checkPort(server.host, 443),
+            ]);
+
+            let ping;
+            if (results[2].status === 'open') {
+                ping = results[2].latency;
+            } else if (results[1].status === 'open') {
+                ping = results[1].latency;
+            } else {
+                ping = null;
+            }
+
+            const openPorts = results.filter(function(r) { return r.status === 'open'; }).length;
+            let overall;
+            if (openPorts === 3) overall = 'online';
+            else if (openPorts === 0) overall = 'offline';
+            else overall = 'degraded';
+
+            return {
+                name: server.name,
+                host: server.host,
+                ping: ping,
+                port22: results[0],
+                port80: results[1],
+                port443: results[2],
+                overall: overall,
+            };
+        }
+
+        function renderRow(server) {
+            var pingDisplay = server.ping !== null && server.ping !== undefined
+                ? '<span class="ping-value ' + getPingClass(server.ping) + '">' + formatLatency(server.ping) + '</span>'
+                : '<span class="ping-value na">-</span>';
+
+            function portBadge(result, port) {
+                var cls, icon, text;
+                if (result.status === 'open') { cls = 'port-open'; icon = 'fa-check-circle'; text = 'Open'; }
+                else if (result.status === 'closed') { cls = 'port-closed'; icon = 'fa-times-circle'; text = 'Closed'; }
+                else if (result.status === 'timeout') { cls = 'port-timeout'; icon = 'fa-hourglass-end'; text = 'Timeout'; }
+                else { cls = 'port-unknown'; icon = 'fa-question-circle'; text = 'Unknown'; }
+                return '<span class="port-status ' + cls + '"><i class="fas ' + icon + '"></i> ' + text +
+                       ' <span style="opacity:0.6;font-size:0.7rem;margin-left:2px;">' + formatLatency(result.latency) + '</span></span>';
+            }
+
+            var statusBadge = '<span class="badge ' + server.overall + '">';
+            if (server.overall === 'online') statusBadge += '<i class="fas fa-check-circle"></i> Online';
+            else if (server.overall === 'degraded') statusBadge += '<i class="fas fa-exclamation-triangle"></i> Degraded';
+            else statusBadge += '<i class="fas fa-times-circle"></i> Offline';
+            statusBadge += '</span>';
+
+            return '<tr>' +
+                '<td><div class="server-name">' + server.name + '<small>' + server.host + '</small></div></td>' +
+                '<td>' + statusBadge + '</td>' +
+                '<td>' + pingDisplay + '</td>' +
+                '<td>' + portBadge(server.port22, 22) + '</td>' +
+                '<td>' + portBadge(server.port80, 80) + '</td>' +
+                '<td>' + portBadge(server.port443, 443) + '</td>' +
+                '</tr>';
+        }
+
+        function updateSummary(results) {
+            var total = results.length;
+            var online = results.filter(function(r) { return r.overall === 'online'; }).length;
+            var offline = results.filter(function(r) { return r.overall === 'offline'; }).length;
+            var pings = results.map(function(r) { return r.ping; }).filter(function(p) { return p !== null && p !== undefined; });
+            var avgPing = pings.length > 0
+                ? Math.round(pings.reduce(function(a, b) { return a + b; }, 0) / pings.length)
+                : null;
+
+            document.getElementById('totalServers').textContent = total;
+            document.getElementById('onlineServers').textContent = online;
+            document.getElementById('offlineServers').textContent = offline;
+            document.getElementById('avgLatency').textContent = avgPing !== null ? avgPing + 'ms' : '-';
+        }
+
+        function renderTable(results) {
+            var tbody = document.getElementById('serverTableBody');
+            tbody.innerHTML = results.map(renderRow).join('');
+        }
+
+        function updateLastUpdate() {
+            var now = new Date();
+            document.getElementById('lastUpdate').textContent =
+                now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+
+        async function checkAll() {
+            if (isChecking) return;
+            isChecking = true;
+            document.getElementById('refreshBtn').disabled = true;
+
+            // Show checking state
+            var tbody = document.getElementById('serverTableBody');
+            tbody.innerHTML = SERVERS.map(function(s) {
+                return '<tr>' +
+                    '<td><div class="server-name">' + s.name + '<small>' + s.host + '</small></div></td>' +
+                    '<td><span class="badge checking"><i class="fas fa-spinner fa-pulse"></i> Checking</span></td>' +
+                    '<td><span class="ping-value na"><i class="fas fa-spinner fa-pulse"></i></span></td>' +
+                    '<td><span class="port-status port-checking"><i class="fas fa-spinner fa-pulse"></i></span></td>' +
+                    '<td><span class="port-status port-checking"><i class="fas fa-spinner fa-pulse"></i></span></td>' +
+                    '<td><span class="port-status port-checking"><i class="fas fa-spinner fa-pulse"></i></span></td>' +
+                    '</tr>';
+            }).join('');
+
+            var results = await Promise.all(SERVERS.map(checkServer));
+
+            renderTable(results);
+            updateSummary(results);
+            updateLastUpdate();
+            resetCountdown();
+
+            isChecking = false;
+            document.getElementById('refreshBtn').disabled = false;
+        }
+
+        function resetCountdown() {
+            countdownValue = 30;
+            document.getElementById('countdown').textContent = countdownValue;
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(function() {
+                countdownValue--;
+                document.getElementById('countdown').textContent = countdownValue;
+                if (countdownValue <= 0) {
+                    checkAll();
+                }
+            }, 1000);
+        }
+
+        function refreshNow() {
+            checkAll();
+        }
+
+        // Start
+        checkAll();
+    </script>
+
+</body>
+</html>
