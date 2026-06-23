@@ -188,14 +188,13 @@
                     <tr>
                         <th>Server</th>
                         <th>Status</th>
-                        <th>SSH (22)</th>
                         <th>HTTP (80)</th>
                         <th>HTTPS (443)</th>
                     </tr>
                 </thead>
                 <tbody id="serverTableBody">
                     <tr>
-                        <td colspan="5" style="text-align:center; color:#94a3b8; padding:40px;">
+                        <td colspan="4" style="text-align:center; color:#94a3b8; padding:40px;">
                             <i class="fas fa-spinner fa-pulse" style="font-size:1.5rem;"></i><br><br>
                             Memeriksa server...
                         </td>
@@ -245,7 +244,6 @@
             return '<tr>' +
                 '<td><div class="server-name">' + server.name + '</div></td>' +
                 '<td>' + statusBadge + '</td>' +
-                '<td>' + portBadge(server.port22) + '</td>' +
                 '<td>' + portBadge(server.port80) + '</td>' +
                 '<td>' + portBadge(server.port443) + '</td>' +
                 '</tr>';
@@ -278,7 +276,7 @@
                 updateLastUpdate(data);
             } catch (e) {
                 var tbody = document.getElementById('serverTableBody');
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#f87171;padding:40px;">' +
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#f87171;padding:40px;">' +
                     '<i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i><br><br>' +
                     'Gagal memuat data server. Coba refresh.</td></tr>';
             }

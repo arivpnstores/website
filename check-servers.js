@@ -17,7 +17,7 @@ const SERVERS = [
   { name: 'ID Biznet VIP 3', host: 'ssl-idbiznetvip3.rajaserver.web.id' },
 ];
 
-const PORTS = [22, 80, 443];
+const PORTS = [80, 443];
 const TIMEOUT = 5000;
 
 function tcpCheck(host, port) {
@@ -62,15 +62,15 @@ async function checkServer(server) {
     : null;
 
   const openPorts = results.filter((r) => r.status === 'open').length;
-  const overall = openPorts === 3 ? 'online' : openPorts === 0 ? 'offline' : 'degraded';
+  const totalPorts = PORTS.length;
+  const overall = openPorts === totalPorts ? 'online' : openPorts === 0 ? 'offline' : 'degraded';
 
   return {
     name: server.name,
     host: server.host,
     ping,
-    port22: results[0],
-    port80: results[1],
-    port443: results[2],
+    port80: results[0],
+    port443: results[1],
     overall,
   };
 }
