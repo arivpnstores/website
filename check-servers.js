@@ -58,8 +58,8 @@ async function checkServer(server) {
     PORTS.map((port) => tcpCheck(server.host, port))
   );
 
-  const ping = results[2]?.status === 'open' ? results[2].latency
-    : results[1]?.status === 'open' ? results[1].latency
+  const ping = results[1]?.status === 'open' ? results[1].latency
+    : results[0]?.status === 'open' ? results[0].latency
     : null;
 
   const openPorts = results.filter((r) => r.status === 'open').length;

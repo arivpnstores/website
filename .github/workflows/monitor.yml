@@ -18,10 +18,14 @@ jobs:
       - name: Run server checks
         run: node check-servers.js
 
-      - name: Commit status.json
+      - name: Commit and push status.json
         run: |
           git config user.name "Server Monitor"
           git config user.email "monitor@rajaserver.web.id"
           git add status/status.json
-          git diff --staged --quiet || git commit -m "Update status.json [skip ci]"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update status.json [skip ci]"
+            git push origin HEAD:$(git rev-parse --abbrev-ref HEAD)
+          fi
