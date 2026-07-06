@@ -150,7 +150,7 @@
         <div class="container">
             <h1><i class="fas fa-server"></i> Status Server</h1>
             <p>Pemantauan real-time ketersediaan server dan port utama</p>
-            <div class="note"><i class="fas fa-info-circle"></i> Pengecekan server via TCP koneksi langsung (update real-time)</div>
+            <div class="note"><i class="fas fa-info-circle"></i> Pengecekan server via TCP koneksi langsung (update otomatis tiap 5 menit)</div>
         </div>
     </section>
 
@@ -172,13 +172,8 @@
 
         <div class="controls">
             <div class="info">
-                <i class="fas fa-sync-alt"></i> Update otomatis setiap <span id="countdown">1</span> detik
-
-            </div>
-            <div class="actions">
-                <button class="btn btn-primary" id="refreshBtn" onclick="refreshNow()">
-                    <i class="fas fa-sync-alt"></i> Refresh Now
-                </button>
+                <i class="fas fa-sync-alt"></i> Refresh interval: ~5 minutes (based on GitHub Actions schedule)
+                <span id="lastUpdate" style="display:block;margin-top:4px;font-size:0.8rem;opacity:0.8;"></span>
             </div>
         </div>
 
@@ -209,9 +204,6 @@
     </div>
 
     <script>
-        var countdownValue = 1;
-        var countdownInterval = null;
-
         function getStatusUrl() {
             var base = window.location.pathname.replace(/\/?$/, '/');
             return base + 'status.json?t=' + Date.now();
@@ -268,11 +260,10 @@
             var el = document.getElementById('lastUpdate');
             if (!el) return;
             var d = new Date(data.timestamp);
-            el.textContent = d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            el.textContent = 'Last updated: ' + d.toLocaleString('id-ID');
         }
 
         async function checkAll() {
-            document.getElementById('refreshBtn').disabled = true;
             try {
                 var url = getStatusUrl();
                 var resp = await fetch(url);
@@ -286,27 +277,8 @@
                 var tbody = document.getElementById('serverTableBody');
                 tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#f87171;padding:40px;">' +
                     '<i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i><br><br>' +
-                    'Gagal memuat data server. Coba refresh.</td></tr>';
+                    'Gagal memuat data server. Coba refresh halaman.</td></tr>';
             }
-            document.getElementById('refreshBtn').disabled = false;
-            resetCountdown();
-        }
-
-        function resetCountdown() {
-            countdownValue = 1;
-            document.getElementById('countdown').textContent = countdownValue;
-            if (countdownInterval) clearInterval(countdownInterval);
-            countdownInterval = setInterval(function() {
-                countdownValue--;
-                document.getElementById('countdown').textContent = countdownValue;
-                if (countdownValue <= 0) {
-                    checkAll();
-                }
-            }, 1000);
-        }
-
-        function refreshNow() {
-            checkAll();
         }
 
         checkAll();

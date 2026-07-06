@@ -15,7 +15,7 @@ const SERVERS = [
   { name: 'EDU-3 DIRECT', host: 'eduserv3.aiosc.my.id' },
   { name: 'CLOUDFRONT REGULER', host: 'd1lnzdlpso56a0.cloudfront.net' },
   { name: 'VIP CLOUDFRONT PREMIUM', host: 'd1jrahl0hl8ghp.cloudfront.net' },
-  { name: 'BOT ALIBABA', host: 'alibaba.rajaserver.web.id' },
+  { name: 'BOT ALIBABA', host: 'bot.rajaserver.web.id' },
 ];
 
 const PORTS = [80, 443];

@@ -26,6 +26,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update status.json [skip ci]"
-            git push origin HEAD:$(git rev-parse --abbrev-ref HEAD)
+            git commit -m "Update status.json [skip ci]" --allow-empty
+            git push origin HEAD
           fi
