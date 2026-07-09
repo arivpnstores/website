@@ -1,191 +1,191 @@
 {
-  "timestamp": "2026-07-09T20:15:27.204Z",
+  "timestamp": "2026-07-09T21:48:25.821Z",
   "summary": {
     "total": 13,
     "online": 12,
     "offline": 0,
-    "avgLatency": 770
+    "avgLatency": 769
   },
   "servers": [
     {
       "name": "SG VIP",
       "host": "ssl-sgvip.rajaserver.web.id",
-      "ping": 316,
+      "ping": 323,
       "port80": {
         "status": "open",
-        "latency": 323
+        "latency": 332
       },
       "port443": {
         "status": "open",
-        "latency": 316
+        "latency": 323
       },
       "overall": "online"
     },
     {
       "name": "SG VVIP",
       "host": "ssl-sgvvip.rajaserver.web.id",
-      "ping": 453,
+      "ping": 432,
       "port80": {
         "status": "open",
-        "latency": 454
+        "latency": 426
       },
       "port443": {
         "status": "open",
-        "latency": 453
+        "latency": 432
       },
       "overall": "online"
     },
     {
       "name": "SG VVIP 2",
       "host": "ssl-sgvvip2.rajaserver.web.id",
-      "ping": 475,
+      "ping": 542,
       "port80": {
         "status": "open",
-        "latency": 476
+        "latency": 541
       },
       "port443": {
         "status": "open",
-        "latency": 475
+        "latency": 542
       },
       "overall": "online"
     },
     {
       "name": "SG VVIP 3",
       "host": "ssl-sgvvip3.rajaserver.web.id",
-      "ping": 524,
+      "ping": 552,
       "port80": {
         "status": "open",
-        "latency": 524
+        "latency": 546
       },
       "port443": {
         "status": "open",
-        "latency": 524
+        "latency": 552
       },
       "overall": "online"
     },
     {
       "name": "ID Biznet VIP",
       "host": "ssl-idbiznetvip.rajaserver.web.id",
-      "ping": 646,
+      "ping": 603,
       "port80": {
         "status": "open",
-        "latency": 647
+        "latency": 597
       },
       "port443": {
         "status": "open",
-        "latency": 646
+        "latency": 603
       },
       "overall": "online"
     },
     {
       "name": "ID Biznet VIP 2",
       "host": "ssl-idbiznetvip2.rajaserver.web.id",
-      "ping": 798,
+      "ping": 698,
       "port80": {
         "status": "open",
-        "latency": 798
+        "latency": 698
       },
       "port443": {
         "status": "open",
-        "latency": 798
+        "latency": 698
       },
       "overall": "online"
     },
     {
       "name": "ID Biznet VIP 3",
       "host": "ssl-idbiznetvip3.rajaserver.web.id",
-      "ping": 806,
+      "ping": 786,
       "port80": {
         "status": "open",
-        "latency": 805
+        "latency": 779
       },
       "port443": {
         "status": "open",
-        "latency": 806
+        "latency": 786
       },
       "overall": "online"
     },
     {
       "name": "EDU-1 DIRECT",
       "host": "eduserv1.aiosc.my.id",
-      "ping": 903,
+      "ping": 886,
       "port80": {
         "status": "open",
-        "latency": 904
+        "latency": 886
       },
       "port443": {
         "status": "open",
-        "latency": 903
+        "latency": 886
       },
       "overall": "online"
     },
     {
       "name": "EDU-2 DIRECT",
       "host": "eduserv2.aiosc.my.id",
-      "ping": 1053,
+      "ping": 981,
       "port80": {
         "status": "open",
-        "latency": 1053
+        "latency": 975
       },
       "port443": {
         "status": "open",
-        "latency": 1053
+        "latency": 981
       },
       "overall": "online"
     },
     {
       "name": "EDU-3 DIRECT",
       "host": "eduserv3.aiosc.my.id",
-      "ping": 1067,
+      "ping": 1098,
       "port80": {
         "status": "open",
-        "latency": 1068
+        "latency": 1092
       },
       "port443": {
         "status": "open",
-        "latency": 1067
+        "latency": 1098
       },
       "overall": "online"
     },
     {
       "name": "CLOUDFRONT REGULER",
       "host": "d1lnzdlpso56a0.cloudfront.net",
-      "ping": 918,
+      "ping": 922,
       "port80": {
         "status": "open",
-        "latency": 917
+        "latency": 919
       },
       "port443": {
         "status": "open",
-        "latency": 918
+        "latency": 922
       },
       "overall": "online"
     },
     {
       "name": "VIP CLOUDFRONT PREMIUM",
       "host": "d1jrahl0hl8ghp.cloudfront.net",
-      "ping": 931,
+      "ping": 966,
       "port80": {
         "status": "open",
-        "latency": 931
+        "latency": 965
       },
       "port443": {
         "status": "open",
-        "latency": 931
+        "latency": 966
       },
       "overall": "online"
     },
     {
       "name": "BOT ALIBABA",
       "host": "alibaba.rajaserver.web.id",
-      "ping": 1114,
+      "ping": 1210,
       "port80": {
         "status": "open",
-        "latency": 1114
+        "latency": 1210
       },
       "port443": {
         "status": "closed",
-        "latency": 1117
+        "latency": 1211
       },
       "overall": "degraded"
     }
