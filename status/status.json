@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-08-22T20:52:30.490Z",
+  "timestamp": "2026-08-22T21:09:30.764Z",
   "summary": {
     "total": 13,
     "online": 7,
     "offline": 6,
-    "avgLatency": 713
+    "avgLatency": 1109
   },
   "servers": [
     {
@@ -13,12 +13,12 @@
       "ping": null,
       "port80": {
         "status": "closed",
-        "latency": 159,
+        "latency": 85,
         "detail": "ENOTFOUND"
       },
       "port443": {
         "status": "closed",
-        "latency": 151,
+        "latency": 79,
         "detail": "ENOTFOUND"
       },
       "overall": "offline"
@@ -29,12 +29,12 @@
       "ping": null,
       "port80": {
         "status": "closed",
-        "latency": 345,
+        "latency": 130,
         "detail": "ENOTFOUND"
       },
       "port443": {
         "status": "closed",
-        "latency": 345,
+        "latency": 130,
         "detail": "ENOTFOUND"
       },
       "overall": "offline"
@@ -45,12 +45,12 @@
       "ping": null,
       "port80": {
         "status": "closed",
-        "latency": 368,
+        "latency": 394,
         "detail": "ENOTFOUND"
       },
       "port443": {
         "status": "closed",
-        "latency": 368,
+        "latency": 394,
         "detail": "ENOTFOUND"
       },
       "overall": "offline"
@@ -61,12 +61,12 @@
       "ping": null,
       "port80": {
         "status": "closed",
-        "latency": 398,
+        "latency": 593,
         "detail": "ENOTFOUND"
       },
       "port443": {
         "status": "closed",
-        "latency": 398,
+        "latency": 593,
         "detail": "ENOTFOUND"
       },
       "overall": "offline"
@@ -74,98 +74,98 @@
     {
       "name": "ID Biznet VIP",
       "host": "ssl-idbiznetvip.rajaserver.web.id",
-      "ping": 616,
+      "ping": 798,
       "port80": {
         "status": "open",
-        "latency": 616
+        "latency": 790
       },
       "port443": {
         "status": "open",
-        "latency": 616
+        "latency": 798
       },
       "overall": "online"
     },
     {
       "name": "ID Biznet VIP 2",
       "host": "ssl-idbiznetvip2.rajaserver.web.id",
-      "ping": 640,
+      "ping": 1038,
       "port80": {
         "status": "open",
-        "latency": 640
+        "latency": 1043
       },
       "port443": {
         "status": "open",
-        "latency": 640
+        "latency": 1038
       },
       "overall": "online"
     },
     {
       "name": "ID Biznet VIP 3",
       "host": "ssl-idbiznetvip3.rajaserver.web.id",
-      "ping": 654,
+      "ping": 1061,
       "port80": {
         "status": "open",
-        "latency": 651
+        "latency": 1066
       },
       "port443": {
         "status": "open",
-        "latency": 654
+        "latency": 1061
       },
       "overall": "online"
     },
     {
       "name": "EDU-1 DIRECT",
       "host": "eduserv1.aiosc.my.id",
-      "ping": 691,
+      "ping": 1104,
       "port80": {
         "status": "open",
-        "latency": 691
+        "latency": 1096
       },
       "port443": {
         "status": "open",
-        "latency": 691
+        "latency": 1104
       },
       "overall": "online"
     },
     {
       "name": "EDU-2 DIRECT",
       "host": "eduserv2.aiosc.my.id",
-      "ping": 837,
+      "ping": 1178,
       "port80": {
         "status": "open",
-        "latency": 836
+        "latency": 1178
       },
       "port443": {
         "status": "open",
-        "latency": 837
+        "latency": 1178
       },
       "overall": "online"
     },
     {
       "name": "EDU-3 DIRECT",
       "host": "eduserv3.aiosc.my.id",
-      "ping": 860,
+      "ping": 1342,
       "port80": {
         "status": "open",
-        "latency": 859
+        "latency": 1337
       },
       "port443": {
         "status": "open",
-        "latency": 860
+        "latency": 1342
       },
       "overall": "online"
     },
     {
       "name": "CLOUDFRONT REGULER",
       "host": "d1lnzdlpso56a0.cloudfront.net",
-      "ping": 696,
+      "ping": 1240,
       "port80": {
         "status": "open",
-        "latency": 697
+        "latency": 1243
       },
       "port443": {
         "status": "open",
-        "latency": 696
+        "latency": 1240
       },
       "overall": "online"
     },
@@ -175,12 +175,12 @@
       "ping": null,
       "port80": {
         "status": "closed",
-        "latency": 712,
+        "latency": 1265,
         "detail": "ENOTFOUND"
       },
       "port443": {
         "status": "closed",
-        "latency": 712,
+        "latency": 1265,
         "detail": "ENOTFOUND"
       },
       "overall": "offline"
@@ -191,12 +191,12 @@
       "ping": null,
       "port80": {
         "status": "closed",
-        "latency": 896,
+        "latency": 1303,
         "detail": "ENOTFOUND"
       },
       "port443": {
         "status": "closed",
-        "latency": 895,
+        "latency": 1303,
         "detail": "ENOTFOUND"
       },
       "overall": "offline"
